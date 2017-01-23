@@ -1,0 +1,388 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Каменогорск. Блок обработки промывной воды</title>
+	<link rel="stylesheet" href="/leaflet.css" />
+<link rel="stylesheet" href="/css/areal.css" />
+	<script src="/leaflet.js" type="text/javascript"></script>
+	<script src="./dist/PruneCluster.js" type="text/javascript"></script>
+	<script src="./layer/Marker.Text.js" type="text/javascript"></script>
+	<script src="./jquery-2.1.1.min.js" type="text/jscript"></script>
+	
+	<script src="./draw/src/leaflet.circle.topolygon-src.js"></script>
+	<script src="./draw/src/Leaflet.draw.js"></script>
+    <script src="./draw/src/Leaflet.Draw.Event.js"></script>
+    <link rel="stylesheet" href="./draw/src/leaflet.draw.css"/>
+
+    <script src="./draw/src/Toolbar.js"></script>
+    <script src="./draw/src/Tooltip.js"></script>
+
+    <script src="./draw/src/ext/GeometryUtil.js"></script>
+    <script src="./draw/src/ext/LatLngUtil.js"></script>
+    <script src="./draw/src/ext/LineUtil.Intersect.js"></script>
+    <script src="./draw/src/ext/Polygon.Intersect.js"></script>
+    <script src="./draw/src/ext/Polyline.Intersect.js"></script>
+    <script src="./draw/src/ext/TouchEvents.js"></script>
+
+    <script src="./draw/src/draw/DrawToolbar.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Feature.js"></script>
+    <script src="./draw/src/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Polyline.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Circle.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Marker.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Polygon.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Rectangle.js"></script>
+
+
+    <script src="./draw/src/edit/EditToolbar.js"></script>
+    <script src="./draw/src/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="./draw/src/edit/handler/EditToolbar.Delete.js"></script>
+
+    <script src="./draw/src/Control.Draw.js"></script>
+
+    <script src="./draw/src/edit/handler/Edit.Poly.js"></script>
+    <script src="./draw/src/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Circle.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Rectangle.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Marker.js"></script>
+	
+	
+	<script src="./dist/easy-button.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="./dist/easy-button.css"/>
+	<script src="./dist/jQuery.print.js" type="text/javascript"></script>
+	
+	
+</head>
+<body oncontextmenu="return false">
+	<div style="position:absolute; top:0px; left:0px; height:30px; width:1000px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	<div style="position:absolute; width:1000px; bottom:0px; top:50px;" id="map"></div>
+	<div style="position:absolute; width:990px; bottom:0px; top:0px; left:0px; background: #aeaeae; padding:10px; display:none; z-index:1200; "  id="detail">
+		<h1><a href="#" onclick=' $("#detail").hide(); return false;' ><img src="images/close.png" alt="Закрыть" border="0" width="30px" height="30px" /></a> Детальная информация</h1>
+		<hr>
+		<div id="detail_info">
+		</div>
+	</div>
+	<div style="position:absolute; top:0px; left:1008px; right:0px; bottom:0px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief">
+<h1>
+	<a href="level1.html"><img src="images\home.png" alt="Главный экран" width="50px"; height="50px"; /></a>
+	<img src="/images/areal.logo.png" border="0"; width="250px"; height="50px";  align="right" />
+	</h1>
+		<a href="level2.9.html"><h2>Блок обработки промывной воды</h2></a>
+	<h2>Подсистема 3 (ШУ21)</h2>
+	<!-- <h3> Насосы</h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("93.1");'>Насос 9.2M1  : <span id="v93.1">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("93.2");'>Насос 9.2M2  : <span id="v93.2">?</span></a></li>
+	</ul>
+	<h3> Датчик </h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("93.21");'>Датчик 1 : <span id="v93.21">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("93.22");'>Датчик 2 : <span id="v93.22">?</span></a></li>
+	</ul>
+	-->
+	<h3> Управление </h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("93.41");'>Управление 9.2M1 : <span id="v93.41">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("93.42");'>Управление 9.2M1 : <span id="v93.42">?</span></a></li>
+	</ul>
+	<hr/>
+	<span id="v212"></span><br/>
+	<span id="v213"></span><br/>
+	<span id="v214"></span><br/>
+	<span id="v215"></span><br/>
+	
+	</div>
+<script type='text/javascript'>
+function GetDitail(sid){
+ return; 
+
+	$("#detail").show(); 
+	var item=document.getElementById('detail_info');
+	if( item!=null){
+		item.innerHTML =sid;
+	}else{
+		console.log(v.ID);
+	}
+	return false;
+}
+	var imgW=1101;
+	var imgH=767;
+
+	var imageUrl = './images/l2_9.3.png', imageBounds = [[-imgH/20, -imgW/20], [imgH/20, imgW/20]];
+	
+	var map = L.map('map', { minZoom: 2, maxZoom: 7,attributionControl:false});  //.setView([27, 44], 3);
+    map.attributionControl = false;
+    L.imageOverlay(imageUrl, imageBounds, { opacity: 1 }).addTo(map); // , attribution: 'Цех:<%=GetC()%>'
+	map.setView([0, 0], 4);
+	map.fitBounds(imageBounds);
+	map.setMaxBounds([[-imgH/15, -imgW/15], [imgH/15, imgW/15]])
+	
+		L.easyButton({
+	  id: 'id-map-print',  // an id for the generated button
+	  position: 'topleft',      // inherited from L.Control -- the corner it goes in
+	  type: 'replace',          // set to animate when you're comfy with css
+	  leafletClasses: true,     // use leaflet classes to style the button?
+	  states:[{                 // specify different icons and responses for your button
+		stateName: 'map-print',
+		onClick: function(button, map){
+			$('#map').print();
+		},
+		title: 'Печать',
+		icon: '<img src="/images/print.png" width="18px;" height="18px">'
+	  }]
+	}).addTo( map );
+	/* var  drawnItems = L.featureGroup().addTo(map);
+	
+	
+    map.addControl(new L.Control.Draw({
+        edit: {
+            featureGroup: drawnItems,
+            poly: {
+                allowIntersection: false
+            }
+        },
+        draw: {
+            polygon: {
+                allowIntersection: false,
+                showArea: true
+            }
+        }
+    })); */
+	
+	
+
+	var rgb = '#00FF00'; // green
+	var bounds;
+    map.on(L.Draw.Event.CREATED, function (event) {
+        var layer = event.layer;
+        var s ="";
+		if(typeof layer.toPolygon =='undefined'){
+			s= JSON.stringify(layer.toGeoJSON()) ;
+			drawnItems.addLayer(layer);
+		}else{
+			
+			//alert ( JSON.stringify(layer.toPolygon(24,map)) );
+			bounds=layer.toPolygon(24,map);
+			var player= L.polygon( bounds, {  color: rgb, opacity: 1.0, fillOpacity: 1, weight: 1 } );
+			s= JSON.stringify(player.toGeoJSON());
+			drawnItems.addLayer(player);
+		}
+		
+		$.ajax({
+		  type: 'GET',
+		  url: 'savelayer.aspx',
+		  data: 'P=l2_93&L=' +s,
+		  success: function(data){
+			//$('.results').html(data);
+		  }
+		});
+		
+    });
+	
+	
+	
+	
+	
+	
+	map.on('contextmenu',function(event){ }); 
+ var stanki =[];
+	var blink=true;
+	  
+	    function MapX(X) {
+            var mx = parseInt(X);
+            mx = mx / 10 -imgW/20;
+            return mx;
+        }
+
+        function MapY(Y) {
+            var my = parseInt(Y);
+            my =  imgH/20 - my / 10;
+            return my;
+        }
+	
+	var rect;
+	var bounds;
+	var rgb = '#dddddd';
+	var marker;
+	
+ /*
+	bounds=FlipLL([[37.36316956553805,18.828790600088322,0],[36.96266048522045,18.662894307167193,0],[36.61873554099828,18.39899141562637,0],[36.35483264945745,18.055066471404203,0],[36.188936356536324,17.654557391086595,0],[36.13235222044088,17.22475820662464,0],[36.188936356536324,16.794959022162683,0],[36.35483264945745,16.394449941845075,0],[36.61873554099828,16.050524997622908,0],[36.96266048522045,15.786622106082083,0],[37.36316956553805,15.620725813160954,0],[37.79296875000001,15.564141677065512,0],[38.22276793446196,15.620725813160956,0],[38.623277014779575,15.786622106082083,0],[38.967201959001734,16.05052499762291,0],[39.231104850542565,16.394449941845075,0],[39.39700114346369,16.794959022162683,0],[39.453585279559135,17.22475820662464,0],[39.39700114346369,17.654557391086595,0],[39.231104850542565,18.0550664714042,0],[38.967201959001734,18.398991415626366,0],[38.623277014779575,18.662894307167193,0],[38.22276793446196,18.828790600088322,0],[37.36316956553805,18.828790600088322,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '93.1';
+	//rect.bindPopup('Насос 9.2M1');
+	rect.bindTooltip('Насос 9.2M1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[44.01474989605817,18.849720171336198,0],[43.58804910341144,18.672974915946572,0],[43.22163282592229,18.39181381739436,0],[42.94047172737008,18.025397539905214,0],[42.76372647198046,17.598696747258487,0],[42.70344195682288,17.14079039331665,0],[42.76372647198046,16.682884039374816,0],[42.94047172737008,16.256183246728085,0],[43.22163282592229,15.889766969238938,0],[43.58804910341144,15.608605870686727,0],[44.01474989605817,15.4318606152971,0],[44.47265625000001,15.37157610013952,0],[44.930562603941844,15.431860615297103,0],[45.35726339658857,15.608605870686727,0],[45.72367967407772,15.889766969238938,0],[46.00484077262993,16.256183246728085,0],[46.18158602801955,16.682884039374812,0],[46.241870543177136,17.14079039331665,0],[46.18158602801955,17.598696747258483,0],[46.00484077262993,18.025397539905214,0],[45.72367967407772,18.39181381739436,0],[45.35726339658857,18.672974915946572,0],[44.930562603941844,18.849720171336195,0],[44.01474989605817,18.849720171336198,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '93.2';
+	//rect.bindPopup('Насос 9.2M2');
+	rect.bindTooltip('Насос 9.2M2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	*/
+	
+	
+	bounds=FlipLL([[30.839929063625977,18.244922454532546,0],[30.58520537701749,18.13941244888164,0],[30.366469188466123,17.97157026815852,0],[30.198627007743003,17.75283407960715,0],[30.093117002092097,17.498110392998665,0],[30.05712950403498,17.22475820662464,0],[30.093117002092097,16.951406020250612,0],[30.198627007743003,16.696682333642126,0],[30.366469188466123,16.47794614509076,0],[30.58520537701749,16.310103964367638,0],[30.839929063625977,16.204593958716732,0],[31.113281250000004,16.168606460659614,0],[31.38663343637403,16.204593958716732,0],[31.641357122982516,16.310103964367638,0],[31.860093311533884,16.47794614509076,0],[32.027935492257,16.696682333642126,0],[32.133445497907914,16.951406020250612,0],[32.169432995965025,17.22475820662464,0],[32.133445497907914,17.498110392998665,0],[32.027935492257,17.75283407960715,0],[31.860093311533884,17.97157026815852,0],[31.641357122982516,18.139412448881636,0],[31.386633436374034,18.244922454532546,0],[30.839929063625977,18.244922454532546,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '93.41';
+	//rect.bindPopup('Управление 9.2M1');
+	rect.bindTooltip('Управление 9.2M1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[50.8801236425299,18.156729665236924,0],[50.62645488551889,18.05165662573264,0],[50.40862458554982,17.884509557766822,0],[50.24147751758401,17.66667925779776,0],[50.136404478079726,17.41301050078675,0],[50.10056602103778,17.14079039331665,0],[50.136404478079726,16.86857028584655,0],[50.24147751758401,16.61490152883554,0],[50.40862458554982,16.397071228866476,0],[50.62645488551889,16.22992416090066,0],[50.8801236425299,16.124851121396375,0],[51.15234375,16.089012664354428,0],[51.4245638574701,16.124851121396375,0],[51.67823261448111,16.229924160900662,0],[51.89606291445018,16.397071228866476,0],[52.06320998241599,16.61490152883554,0],[52.168283021920274,16.86857028584655,0],[52.20412147896222,17.14079039331665,0],[52.168283021920274,17.41301050078675,0],[52.06320998241599,17.66667925779776,0],[51.89606291445018,17.884509557766822,0],[51.67823261448111,18.051656625732637,0],[51.424563857470105,18.156729665236924,0],[50.8801236425299,18.156729665236924,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '93.42';
+	//rect.bindPopup('Управление 9.2M2');
+	rect.bindTooltip('Управление 9.2M2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	/*
+	bounds=FlipLL([[20.382491877328466,30.61188631909269,0],[19.88350686861212,30.40519996106152,0],[19.45501872758327,30.07640944642115,0],[19.126228212942898,29.6479213053923,0],[18.919541854911728,29.148936296675956,0],[18.849044987224232,28.613459424004414,0],[18.919541854911728,28.077982551332877,0],[19.126228212942898,27.57899754261653,0],[19.45501872758327,27.15050940158768,0],[19.88350686861212,26.82171888694731,0],[20.382491877328466,26.61503252891614,0],[20.917968750000004,26.544535661228643,0],[21.453445622671545,26.61503252891614,0],[21.95243063138789,26.82171888694731,0],[22.38091877241674,27.15050940158768,0],[22.70970928705711,27.57899754261653,0],[22.91639564508828,28.077982551332877,0],[22.986892512775775,28.613459424004414,0],[22.91639564508828,29.148936296675952,0],[22.709709287057112,29.6479213053923,0],[22.38091877241674,30.07640944642115,0],[21.95243063138789,30.40519996106152,0],[21.453445622671545,30.611886319092687,0],[20.382491877328466,30.61188631909269,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '93.21';
+	//rect.bindPopup('Датчик 1');
+	rect.bindTooltip('Датчик 1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[27.668651151858697,-7.764548217581857,0],[27.161500699413715,-7.974616813148219,0],[26.726000732893436,-8.308787690723163,0],[26.39182985531849,-8.744287657243444,0],[26.18176125975213,-9.251438109688424,0],[26.11011077382743,-9.79567758282973,0],[26.18176125975213,-10.339917055971036,0],[26.39182985531849,-10.847067508416018,0],[26.726000732893436,-11.282567474936297,0],[27.161500699413715,-11.616738352511241,0],[27.668651151858697,-11.826806948077603,0],[28.212890625000004,-11.898457434002307,0],[28.75713009814131,-11.826806948077603,0],[29.264280550586292,-11.616738352511241,0],[29.69978051710657,-11.282567474936297,0],[30.033951394681516,-10.847067508416018,0],[30.244019990247878,-10.339917055971037,0],[30.315670476172578,-9.79567758282973,0],[30.244019990247878,-9.251438109688426,0],[30.033951394681516,-8.744287657243444,0],[29.69978051710657,-8.308787690723165,0],[29.264280550586292,-7.974616813148221,0],[28.757130098141314,-7.764548217581858,0],[27.668651151858697,-7.764548217581857,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '93.22';
+	//rect.bindPopup('Датчик 2');
+	rect.bindTooltip('Датчик 2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	*/
+	
+
+	
+	function FlipLL(b) {
+		var fb;
+		var point;
+		var j;
+		fb=[];
+		for (j = 0; j < b.length; j++) {
+			 point =new  L.latLng(
+			  b[j][1],               
+			  b[j][0],               
+               b[j][2]             
+            );
+			fb.push(point)
+		}
+		return fb;
+	}
+
+
+    function ReloadData() {
+
+               function OnRequestReady(data) {
+
+                $.each(data.data, function (i, v) {
+                    var ok = false;
+                    var rect;
+                    var j;
+                    for (j = 0; j < stanki.length; j++) {
+                        if (stanki[j].tag == v.ID) {
+                            ok = true;
+                            rect = stanki[j];
+                            break;
+                        }
+                    }
+
+                    if (ok) {
+						if(v.BLINK=='YES'){
+							blink=true;
+						}else{
+							blink=false;
+						}
+					
+						switch (v.COLOR) {
+							case 'GREEN':
+								 rgb = '#00FF00'; // green
+								break;
+							case 'YELLOW':
+								rgb = '#dddd00';
+								break;
+							case 'RED':
+								 rgb = '#FF0000'; //red
+								break;
+							case 'BLUE':
+								 rgb = '#0000FF'; 
+								break;								
+								
+							default:
+								rgb = '#000000'; //black
+								break;
+						}
+                        rect.setStyle({ color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 1 });
+                       // //rect.bindPopup(sPopup);
+                       // rect.marker.bindPopup(sPopup);
+                        rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+					}
+					if(v.INFO !=null){
+						var item=document.getElementById('v' +v.ID);
+						if( item!=null){
+							item.innerHTML =v.INFO;
+						}else{
+							console.log(v.ID);
+						}
+					}
+               
+				});
+			 }
+           $.ajax({
+                dataType: "json",
+                url: 'l293.aspx',
+                success: OnRequestReady
+            });
+        }
+        var blinkMode = false;
+        function Blinker() {
+            blinkMode = !blinkMode;
+
+
+            var j;
+            for (j = 0; j < stanki.length; j++) {
+
+                rect = stanki[j];
+                if (rect.blink == true) {
+                    if (blinkMode) {
+                        rect.setStyle({  fillOpacity: 0.1 });
+                    } else {
+                        rect.setStyle({  fillOpacity: 0.5 });
+                    }
+                }
+               
+            }
+           
+
+        }
+
+        ReloadData();
+		var intervalID = window.setInterval(ReloadData, 1000);
+		var intervalID2 = window.setInterval(Blinker, 500);
+   
+
+</script>
+ 
+</body>
+</html>

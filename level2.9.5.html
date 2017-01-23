@@ -1,0 +1,400 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Каменогорск. Блок обработки промывной воды</title>
+	<link rel="stylesheet" href="/leaflet.css" />
+<link rel="stylesheet" href="/css/areal.css" />
+	<script src="/leaflet.js" type="text/javascript"></script>
+	<script src="./dist/PruneCluster.js" type="text/javascript"></script>
+	<script src="./layer/Marker.Text.js" type="text/javascript"></script>
+	<script src="./jquery-2.1.1.min.js" type="text/jscript"></script>
+	
+	<script src="./draw/src/leaflet.circle.topolygon-src.js"></script>
+	<script src="./draw/src/Leaflet.draw.js"></script>
+    <script src="./draw/src/Leaflet.Draw.Event.js"></script>
+    <link rel="stylesheet" href="./draw/src/leaflet.draw.css"/>
+
+    <script src="./draw/src/Toolbar.js"></script>
+    <script src="./draw/src/Tooltip.js"></script>
+
+    <script src="./draw/src/ext/GeometryUtil.js"></script>
+    <script src="./draw/src/ext/LatLngUtil.js"></script>
+    <script src="./draw/src/ext/LineUtil.Intersect.js"></script>
+    <script src="./draw/src/ext/Polygon.Intersect.js"></script>
+    <script src="./draw/src/ext/Polyline.Intersect.js"></script>
+    <script src="./draw/src/ext/TouchEvents.js"></script>
+
+    <script src="./draw/src/draw/DrawToolbar.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Feature.js"></script>
+    <script src="./draw/src/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Polyline.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Circle.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Marker.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Polygon.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Rectangle.js"></script>
+
+
+    <script src="./draw/src/edit/EditToolbar.js"></script>
+    <script src="./draw/src/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="./draw/src/edit/handler/EditToolbar.Delete.js"></script>
+
+    <script src="./draw/src/Control.Draw.js"></script>
+
+    <script src="./draw/src/edit/handler/Edit.Poly.js"></script>
+    <script src="./draw/src/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Circle.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Rectangle.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Marker.js"></script>
+	
+	
+	<script src="./dist/easy-button.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="./dist/easy-button.css"/>
+	<script src="./dist/jQuery.print.js" type="text/javascript"></script>
+	
+	
+</head>
+<body oncontextmenu="return false">
+	<div style="position:absolute; top:0px; left:0px; height:30px; width:1000px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	<div style="position:absolute; width:1000px; bottom:0px; top:50px;" id="map"></div>
+	<div style="position:absolute; width:990px; bottom:0px; top:0px; left:0px; background: #aeaeae; padding:10px; display:none; z-index:1200; "  id="detail">
+		<h1><a href="#" onclick=' $("#detail").hide(); return false;' ><img src="images/close.png" alt="Закрыть" border="0" width="30px" height="30px" /></a> Детальная информация</h1>
+		<hr>
+		<div id="detail_info">
+		</div>
+	</div>
+	<div style="position:absolute; top:0px; left:1008px; right:0px; bottom:0px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief">
+<h1>
+	<a href="level1.html"><img src="images\home.png" alt="Главный экран" width="50px"; height="50px"; /></a>
+	<img src="/images/areal.logo.png" border="0"; width="250px"; height="50px";  align="right" />
+	</h1>
+		<a href="level2.9.html"><h2>Блок обработки промывной воды</h2></a>
+	<h2>Подсистема 5 (ШУ21)</h2>
+	<!--
+	<h3> Насосы</h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("95.1");'>Насос 9M6.3.1  : <span id="v95.1">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("95.2");'>Насос 9M6.3.2  : <span id="v95.2">?</span></a></li>
+	</ul>
+	<h3> Датчик </h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("95.21");'>Датчик 1 : <span id="v95.21">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("95.22");'>Датчик 2 : <span id="v95.22">?</span></a></li>
+	</ul>
+	-->
+	<h3> Управление </h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("95.41");'>Управление 9M6.2.1 : <span id="v95.41">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("95.42");'>Управление 9M6.3.1 : <span id="v95.42">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("95.43");'>Управление 9M6.2.2 : <span id="v95.43">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("95.44");'>Управление 9M6.3.2 : <span id="v95.44">?</span></a></li>
+	</ul>
+	</div>
+<script type='text/javascript'>
+function GetDitail(sid){
+ return; 
+
+	$("#detail").show(); 
+	var item=document.getElementById('detail_info');
+	if( item!=null){
+		item.innerHTML =sid;
+	}else{
+		console.log(v.ID);
+	}
+	return false;
+}
+	var imgW=1201;
+	var imgH=649;
+
+	var imageUrl = './images/l2_9.5.png', imageBounds = [[-imgH/20, -imgW/20], [imgH/20, imgW/20]];
+	
+	var map = L.map('map', { minZoom: 2, maxZoom: 7,attributionControl:false});  //.setView([27, 44], 3);
+    map.attributionControl = false;
+    L.imageOverlay(imageUrl, imageBounds, { opacity: 1 }).addTo(map); // , attribution: 'Цех:<%=GetC()%>'
+	map.setView([0, 0], 4);
+	map.fitBounds(imageBounds);
+	map.setMaxBounds([[-imgH/15, -imgW/15], [imgH/15, imgW/15]])
+	
+		L.easyButton({
+	  id: 'id-map-print',  // an id for the generated button
+	  position: 'topleft',      // inherited from L.Control -- the corner it goes in
+	  type: 'replace',          // set to animate when you're comfy with css
+	  leafletClasses: true,     // use leaflet classes to style the button?
+	  states:[{                 // specify different icons and responses for your button
+		stateName: 'map-print',
+		onClick: function(button, map){
+			$('#map').print();
+		},
+		title: 'Печать',
+		icon: '<img src="/images/print.png" width="18px;" height="18px">'
+	  }]
+	}).addTo( map );
+	
+	/* var  drawnItems = L.featureGroup().addTo(map);
+	
+	
+    map.addControl(new L.Control.Draw({
+        edit: {
+            featureGroup: drawnItems,
+            poly: {
+                allowIntersection: false
+            }
+        },
+        draw: {
+            polygon: {
+                allowIntersection: false,
+                showArea: true
+            }
+        }
+    })); */
+	
+	
+
+	var rgb = '#00FF00'; // green
+	var bounds;
+    map.on(L.Draw.Event.CREATED, function (event) {
+        var layer = event.layer;
+        var s ="";
+		if(typeof layer.toPolygon =='undefined'){
+			s= JSON.stringify(layer.toGeoJSON()) ;
+			drawnItems.addLayer(layer);
+		}else{
+			
+			//alert ( JSON.stringify(layer.toPolygon(24,map)) );
+			bounds=layer.toPolygon(24,map);
+			var player= L.polygon( bounds, {  color: rgb, opacity: 1.0, fillOpacity: 1, weight: 1 } );
+			s= JSON.stringify(player.toGeoJSON());
+			drawnItems.addLayer(player);
+		}
+		
+		$.ajax({
+		  type: 'GET',
+		  url: 'savelayer.aspx',
+		  data: 'P=l2_95&L=' +s,
+		  success: function(data){
+			//$('.results').html(data);
+		  }
+		});
+		
+    });
+	
+
+	
+	map.on('contextmenu',function(event){ }); 
+ var stanki =[];
+	var blink=true;
+	  
+	function MapX(X) {
+		var mx = parseInt(X);
+		mx = mx / 10 -imgW/20;
+		return mx;
+	}
+
+	function MapY(Y) {
+		var my = parseInt(Y);
+		my =  imgH/20 - my / 10;
+		return my;
+	}
+	
+	var rect;
+	var bounds;
+	var rgb = '#dddddd';
+	var marker;
+	/*
+	bounds=FlipLL([[-21.03805943675036,-17.631949220266637,0],[-21.436619726191235,-17.797038297576393,0],[-21.778871205749258,-18.059657094516993,0],[-22.041490002689855,-18.401908574075016,0],[-22.206579079999614,-18.800468863515892,0],[-22.26288788988247,-19.228176737766248,0],[-22.206579079999614,-19.655884612016603,0],[-22.04149000268986,-20.05444490145748,0],[-21.778871205749258,-20.396696381015502,0],[-21.436619726191235,-20.659315177956103,0],[-21.03805943675036,-20.824404255265858,0],[-20.610351562500004,-20.880713065148715,0],[-20.182643688249648,-20.824404255265858,0],[-19.784083398808768,-20.6593151779561,0],[-19.44183191925075,-20.396696381015502,0],[-19.17921312231015,-20.05444490145748,0],[-19.014124045000393,-19.655884612016603,0],[-18.957815235117536,-19.228176737766248,0],[-19.014124045000393,-18.800468863515892,0],[-19.17921312231015,-18.401908574075016,0],[-19.44183191925075,-18.059657094516993,0],[-19.784083398808768,-17.797038297576396,0],[-20.182643688249644,-17.631949220266637,0],[-21.03805943675036,-17.631949220266637,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.1';
+	//rect.bindPopup('Насос 9M6.3.1');
+	rect.bindTooltip('Насос 9M6.3.1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[39.14658554896329,-17.657445361158082,0],[38.76993511698725,-17.813459078356242,0],[38.44649805856679,-18.061641062194795,0],[38.19831607472823,-18.385078120615262,0],[38.042302357530076,-18.761728552591297,0],[37.989088983974504,-19.16592425362801,0],[38.042302357530076,-19.57011995466472,0],[38.19831607472823,-19.946770386640758,0],[38.44649805856678,-20.270207445061224,0],[38.76993511698725,-20.518389428899777,0],[39.14658554896329,-20.674403146097937,0],[39.55078125,-20.727616519653505,0],[39.95497695103671,-20.674403146097937,0],[40.33162738301275,-20.518389428899777,0],[40.65506444143322,-20.270207445061224,0],[40.90324642527177,-19.946770386640758,0],[41.059260142469924,-19.57011995466472,0],[41.112473516025496,-19.16592425362801,0],[41.059260142469924,-18.7617285525913,0],[40.90324642527177,-18.385078120615262,0],[40.65506444143322,-18.061641062194795,0],[40.33162738301275,-17.813459078356246,0],[39.95497695103671,-17.657445361158086,0],[39.14658554896329,-17.657445361158082,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.2';
+	//rect.bindPopup('Насос 9M6.3.2');
+	rect.bindTooltip('Насос 9M6.3.2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	*/
+	
+	bounds=FlipLL([[-29.6226365067978,-3.3286456954031305,0],[-30.117300294942552,-3.5335421452675373,0],[-30.542077719742746,-3.8594853272009306,0],[-30.86802090167614,-4.284262752001126,0],[-31.072917351540546,-4.778926540145877,0],[-31.1428037148851,-5.309766171943677,0],[-31.072917351540546,-5.840605803741478,0],[-30.86802090167614,-6.335269591886228,0],[-30.542077719742746,-6.760047016686425,0],[-30.117300294942552,-7.085990198619818,0],[-29.6226365067978,-7.290886648484225,0],[-29.091796875,-7.36077301182878,0],[-28.5609572432022,-7.290886648484225,0],[-28.066293455057448,-7.085990198619818,0],[-27.641516030257254,-6.760047016686423,0],[-27.31557284832386,-6.335269591886227,0],[-27.110676398459454,-5.840605803741478,0],[-27.0407900351149,-5.309766171943678,0],[-27.110676398459454,-4.7789265401458785,0],[-27.31557284832386,-4.284262752001128,0],[-27.64151603025725,-3.8594853272009324,0],[-28.066293455057448,-3.5335421452675386,0],[-28.560957243202196,-3.3286456954031314,0],[-29.6226365067978,-3.3286456954031305,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.41';
+	//rect.bindPopup('Управление 9M6.2.1');
+	rect.bindTooltip('Управление 9M6.2.1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[-21.170017876832883,-5.524927278827192,0],[-21.650593344660102,-5.7239881553450225,0],[-22.06327285453775,-6.040648280660071,0],[-22.379932979852796,-6.453327790537718,0],[-22.578993856370627,-6.933903258364937,0],[-22.6468898143202,-7.449624260197815,0],[-22.578993856370627,-7.965345262030693,0],[-22.379932979852796,-8.445920729857914,0],[-22.06327285453775,-8.858600239735562,0],[-21.650593344660102,-9.17526036505061,0],[-21.17001787683288,-9.37432124156844,0],[-20.654296875000004,-9.442217199518012,0],[-20.138575873167124,-9.37432124156844,0],[-19.658000405339905,-9.17526036505061,0],[-19.245320895462257,-8.85860023973556,0],[-18.92866077014721,-8.445920729857914,0],[-18.72959989362938,-7.965345262030694,0],[-18.661703935679807,-7.449624260197816,0],[-18.72959989362938,-6.933903258364939,0],[-18.928660770147207,-6.4533277905377195,0],[-19.245320895462257,-6.040648280660072,0],[-19.6580004053399,-5.723988155345023,0],[-20.138575873167124,-5.524927278827194,0],[-21.170017876832883,-5.524927278827192,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.42';
+	//rect.bindPopup('Управление 9M6.3.1');
+	rect.bindTooltip('Управление 9M6.3.1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[30.414301575320177,-3.3571630685985614,0],[29.926758258656,-3.5591101226052233,0],[29.508095321334714,-3.8803614932783894,0],[29.18684395066155,-4.299024430599674,0],[28.984896896654888,-4.78656774726385,0],[28.916016517312,-5.309766171943677,0],[28.984896896654888,-5.832964596623505,0],[29.18684395066155,-6.32050791328768,0],[29.508095321334714,-6.739170850608966,0],[29.926758258656,-7.060422221282132,0],[30.414301575320177,-7.262369275288794,0],[30.937500000000004,-7.331249654631684,0],[31.460698424679833,-7.262369275288794,0],[31.948241741344006,-7.060422221282131,0],[32.36690467866529,-6.739170850608965,0],[32.68815604933846,-6.32050791328768,0],[32.89010310334512,-5.832964596623505,0],[32.95898348268801,-5.309766171943678,0],[32.89010310334512,-4.786567747263851,0],[32.68815604933846,-4.299024430599676,0],[32.36690467866529,-3.880361493278391,0],[31.94824174134401,-3.559110122605225,0],[31.460698424679833,-3.3571630685985623,0],[30.414301575320177,-3.3571630685985614,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.43';
+	//rect.bindPopup('Управление 9M6.2.2');
+	rect.bindTooltip('Управление 9M6.2.2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[39.083467402230866,-5.498002555116832,0],[38.60704970883836,-5.695341225074516,0],[38.19794056080972,-6.009261715385971,0],[37.884020070498266,-6.418370863414611,0],[37.68668140054058,-6.894788556807119,0],[37.619372855176714,-7.406047717076257,0],[37.68668140054058,-7.917306877345396,0],[37.884020070498266,-8.393724570737904,0],[38.19794056080972,-8.802833718766545,0],[38.60704970883836,-9.116754209078,0],[39.083467402230866,-9.314092879035684,0],[39.59472656250001,-9.38140142439955,0],[40.10598572276915,-9.314092879035684,0],[40.582403416161654,-9.116754209078,0],[40.991512564190295,-8.802833718766543,0],[41.30543305450175,-8.393724570737904,0],[41.502771724459436,-7.917306877345396,0],[41.5700802698233,-7.406047717076258,0],[41.502771724459436,-6.89478855680712,0],[41.30543305450175,-6.418370863414613,0],[40.991512564190295,-6.009261715385973,0],[40.582403416161654,-5.695341225074517,0],[40.10598572276915,-5.498002555116833,0],[39.083467402230866,-5.498002555116832,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.44';
+	//rect.bindPopup('Управление 9M6.3.2');
+	rect.bindTooltip('Управление 9M6.3.2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	/*
+	bounds=FlipLL([[-46.728785693249506,-20.61933177119737,0],[-47.68454930523849,-21.015222021705902,0],[-48.505282125283955,-21.64499246444687,0],[-49.135052568024925,-22.465725284492336,0],[-49.53094281853346,-23.421488896481318,0],[-49.665973610476975,-24.44714958973082,0],[-49.53094281853346,-25.47281028298032,0],[-49.135052568024925,-26.428573894969304,0],[-48.50528212528396,-27.24930671501477,0],[-47.68454930523849,-27.879077157755738,0],[-46.728785693249506,-28.27496740826427,0],[-45.70312500000001,-28.409998200207788,0],[-44.67746430675051,-28.27496740826427,0],[-43.72170069476152,-27.879077157755738,0],[-42.90096787471605,-27.249306715014768,0],[-42.27119743197509,-26.428573894969304,0],[-41.87530718146655,-25.47281028298032,0],[-41.74027638952304,-24.44714958973082,0],[-41.87530718146655,-23.42148889648132,0],[-42.27119743197509,-22.46572528449234,0],[-42.90096787471605,-21.644992464446872,0],[-43.721700694761516,-21.015222021705906,0],[-44.6774643067505,-20.61933177119737,0],[-46.728785693249506,-20.61933177119737,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.21';
+	//rect.bindPopup('Датчик 1');
+	rect.bindTooltip('Датчик 1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[13.471373075697867,-20.600972484468418,0],[12.511025353641617,-20.998761535538225,0],[11.686356069039734,-21.631552533770552,0],[11.053565070807405,-22.456221818372434,0],[10.6557760197376,-23.416569540428686,0],[10.520097582283231,-24.44714958973082,0],[10.655776019737598,-25.47772963903295,0],[11.053565070807405,-26.438077361089203,0],[11.686356069039732,-27.262746645691088,0],[12.511025353641617,-27.895537643923415,0],[13.47137307569787,-28.293326694993223,0],[14.501953125000004,-28.42900513244759,0],[15.532533174302138,-28.293326694993223,0],[16.49288089635839,-27.895537643923415,0],[17.31755018096027,-27.262746645691088,0],[17.9503411791926,-26.438077361089203,0],[18.348130230262406,-25.477729639032955,0],[18.483808667716772,-24.44714958973082,0],[18.348130230262406,-23.41656954042869,0],[17.9503411791926,-22.456221818372438,0],[17.317550180960275,-21.631552533770556,0],[16.492880896358393,-20.99876153553823,0],[15.532533174302142,-20.600972484468418,0],[13.471373075697867,-20.600972484468418,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '95.22';
+	//rect.bindPopup('Датчик 2');
+	rect.bindTooltip('Датчик 2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	*/
+	
+	function FlipLL(b) {
+		var fb;
+		var point;
+		var j;
+		fb=[];
+		for (j = 0; j < b.length; j++) {
+			 point =new  L.latLng(
+			  b[j][1],               
+			  b[j][0],               
+               b[j][2]             
+            );
+			fb.push(point)
+		}
+		return fb;
+	}
+
+
+    function ReloadData() {
+
+               function OnRequestReady(data) {
+
+                $.each(data.data, function (i, v) {
+                    var ok = false;
+                    var rect;
+                    var j;
+                    for (j = 0; j < stanki.length; j++) {
+                        if (stanki[j].tag == v.ID) {
+                            ok = true;
+                            rect = stanki[j];
+                            break;
+                        }
+                    }
+
+                    if (ok) {
+						if(v.BLINK=='YES'){
+							blink=true;
+						}else{
+							blink=false;
+						}
+					
+						switch (v.COLOR) {
+							case 'GREEN':
+								 rgb = '#00FF00'; // green
+								break;
+							case 'YELLOW':
+								rgb = '#dddd00';
+								break;
+							case 'RED':
+								 rgb = '#FF0000'; //red
+								break;
+							case 'BLUE':
+								 rgb = '#0000FF'; //red
+								break;								
+							default:
+								rgb = '#000000'; //black
+								break;
+						}
+                        rect.setStyle({ color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 1 });
+                       // //rect.bindPopup(sPopup);
+                       // rect.marker.bindPopup(sPopup);
+                        rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+					}
+					if(v.INFO !=null){
+						var item=document.getElementById('v' +v.ID);
+						if( item!=null){
+							item.innerHTML =v.INFO;
+						}else{
+							console.log(v.ID);
+						}
+					}
+               
+				});
+			 }
+           $.ajax({
+                dataType: "json",
+                url: 'l295.aspx',
+                success: OnRequestReady
+            });
+        }
+        var blinkMode = false;
+          function Blinker() {
+            blinkMode = !blinkMode;
+
+
+            var j;
+            for (j = 0; j < stanki.length; j++) {
+
+                rect = stanki[j];
+                if (rect.blink == true) {
+                    if (blinkMode) {
+                        rect.setStyle({  fillOpacity: 0.1 });
+                    } else {
+                        rect.setStyle({  fillOpacity: 0.5 });
+                    }
+                }
+               
+            }
+           
+
+        }
+
+        ReloadData();
+		var intervalID = window.setInterval(ReloadData, 1000);
+		var intervalID2 = window.setInterval(Blinker, 500);
+   
+
+</script>
+ 
+</body>
+</html>

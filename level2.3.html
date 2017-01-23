@@ -1,0 +1,543 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Каменогорск. Уровень 2. Насосная станция првого подъема</title>
+	<link rel="stylesheet" href="/leaflet.css" />
+<link rel="stylesheet" href="/css/areal.css" />
+	<script src="/leaflet.js" type="text/javascript"></script>
+	<script src="./dist/PruneCluster.js" type="text/javascript"></script>
+	<script src="./layer/Marker.Text.js" type="text/javascript"></script>
+	<script src="./jquery-2.1.1.min.js" type="text/jscript"></script>
+	
+	<script src="./draw/src/leaflet.circle.topolygon-src.js"></script>
+	<script src="./draw/src/Leaflet.draw.js"></script>
+    <script src="./draw/src/Leaflet.Draw.Event.js"></script>
+    <link rel="stylesheet" href="./draw/src/leaflet.draw.css"/>
+
+    <script src="./draw/src/Toolbar.js"></script>
+    <script src="./draw/src/Tooltip.js"></script>
+
+    <script src="./draw/src/ext/GeometryUtil.js"></script>
+    <script src="./draw/src/ext/LatLngUtil.js"></script>
+    <script src="./draw/src/ext/LineUtil.Intersect.js"></script>
+    <script src="./draw/src/ext/Polygon.Intersect.js"></script>
+    <script src="./draw/src/ext/Polyline.Intersect.js"></script>
+    <script src="./draw/src/ext/TouchEvents.js"></script>
+
+    <script src="./draw/src/draw/DrawToolbar.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Feature.js"></script>
+    <script src="./draw/src/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Polyline.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Circle.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Marker.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Polygon.js"></script>
+    <script src="./draw/src/draw/handler/Draw.Rectangle.js"></script>
+
+
+    <script src="./draw/src/edit/EditToolbar.js"></script>
+    <script src="./draw/src/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="./draw/src/edit/handler/EditToolbar.Delete.js"></script>
+
+    <script src="./draw/src/Control.Draw.js"></script>
+
+    <script src="./draw/src/edit/handler/Edit.Poly.js"></script>
+    <script src="./draw/src/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Circle.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Rectangle.js"></script>
+    <script src="./draw/src/edit/handler/Edit.Marker.js"></script>
+	
+	<script src="./dist/easy-button.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="./dist/easy-button.css"/>
+	<script src="./dist/jQuery.print.js" type="text/javascript"></script>
+	
+
+</head>
+<body oncontextmenu="return false">
+	<div style="position:absolute; top:0px; left:0px; height:30px; width:1000px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	
+	<div style="position:absolute; width:1000px; bottom:0px; top:50px;" id="map"></div>
+	<div style="position:absolute; width:990px; bottom:0px; top:0px; left:0px; background: #aeaeae; padding:10px; display:none; z-index:1200; "  id="detail">
+		<h1><a href="#" onclick=' $("#detail").hide(); return false;' ><img src="images/close.png" alt="Закрыть" border="0" width="30px" height="30px" /></a> Детальная информация</h1>
+		<hr>
+		<div id="detail_info">
+		</div>
+	</div>
+	<div style="position:absolute; top:0px; left:1008px; right:0px; bottom:0px; background: #bfbfbf; padding:10px;  overflow-y: scroll;" id="brief">
+	<h1>
+	<a href="level1.html"><img src="images\home.png" alt="Главный экран" width="50px"; height="50px"; /></a>
+	<img src="/images/areal.logo.png" border="0"; width="250px"; height="50px";  align="right" />
+	</h1>
+	
+	<h2>Насосная станция првого подъема</h2>
+	<h3> Насосы</h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("3.1");' >Насос 1M1 : <span id="v3.1">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("3.2");' >Насос 1M2 : <span id="v3.2">?</span></a></li>
+	</ul>
+	
+	
+	
+	<h3> Задвижки</h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("3.71");'>Задвижка 1.1M1  : <span id="v3.71">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("3.72");'>Задвижка 1.1M2  : <span id="v3.72">?</span></a></li>
+	</ul>
+	
+	
+	<h3> Управление</h3>
+	<ul>
+	<li><a href="#" onclick='GetDitail("3.21");'>Управление 1.1M1  : <span id="v3.21">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("3.22");'>Управление 1.1M2  : <span id="v3.22">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("3.23");'>Управление 1M1  : <span id="v3.23">?</span></a></li>
+	<li><a href="#" onclick='GetDitail("3.24");'>Управление 1M2  : <span id="v3.24">?</span></a></li>
+	</ul>
+	<hr/>
+	Уровень: <span id="v3.50">?</span><br/>
+	Напор мотор 1M1 : <span id="v3.11">?</span><br/>
+	Напор мотор 1M2 : <span id="v3.12">?</span><br/>
+	
+	
+	</div>
+<script type='text/javascript'>
+
+function GetDitail(sid){
+ return; 
+
+	$("#detail").show(); 
+	var item=document.getElementById('detail_info');
+	if( item!=null){
+		item.innerHTML =sid;
+	}else{
+		console.log(v.ID);
+	}
+	return false;
+}
+
+	var imgW=997;
+	var imgH=711;
+
+	var imageUrl = './images/l2_3.png', imageBounds = [[-imgH/20, -imgW/20], [imgH/20, imgW/20]];
+	
+	var map = L.map('map', { minZoom: 3, maxZoom: 5,attributionControl:false});  //.setView([27, 44], 3);
+    map.attributionControl = false;
+    L.imageOverlay(imageUrl, imageBounds, { opacity: 1 }).addTo(map); // , attribution: 'Цех:<%=GetC()%>'
+	map.setView([-0.4, 2], 4);
+	//map.fitBounds(imageBounds);
+	map.setMaxBounds([[-imgH/15, -imgW/15], [imgH/15, imgW/15]])
+	
+		L.easyButton({
+	  id: 'id-map-print',  // an id for the generated button
+	  position: 'topleft',      // inherited from L.Control -- the corner it goes in
+	  type: 'replace',          // set to animate when you're comfy with css
+	  leafletClasses: true,     // use leaflet classes to style the button?
+	  states:[{                 // specify different icons and responses for your button
+		stateName: 'map-print',
+		onClick: function(button, map){
+			$('#map').print();
+		},
+		title: 'Печать',
+		icon: '<img src="/images/print.png" width="18px;" height="18px">'
+	  }]
+	}).addTo( map );
+	
+	/*
+	var  drawnItems = L.featureGroup().addTo(map);
+	
+	
+    map.addControl(new L.Control.Draw({
+        edit: {
+            featureGroup: drawnItems,
+            poly: {
+                allowIntersection: false
+            }
+        },
+        draw: {
+            polygon: {
+                allowIntersection: false,
+                showArea: true
+            }
+        }
+    }));
+	
+	*/
+
+	var rgb = '#00FF00'; // green
+	var bounds;
+    map.on(L.Draw.Event.CREATED, function (event) {
+        var layer = event.layer;
+        var s ="";
+		if(typeof layer.toPolygon =='undefined'){
+			s= JSON.stringify(layer.toGeoJSON()) ;
+			drawnItems.addLayer(layer);
+		}else{
+			
+			//alert ( JSON.stringify(layer.toPolygon(24,map)) );
+			bounds=layer.toPolygon(24,map);
+			var player= L.polygon( bounds, {  color: rgb, opacity: 1.0, fillOpacity: 1, weight: 1 } );
+			s= JSON.stringify(player.toGeoJSON());
+			drawnItems.addLayer(player);
+		}
+		
+		$.ajax({
+		  type: 'GET',
+		  url: 'savelayer.aspx',
+		  data: 'P=l2_3&L=' +s,
+		  success: function(data){
+			//$('.results').html(data);
+		  }
+		});
+		
+    });
+	
+	
+	
+	
+	
+	
+	map.on('contextmenu',function(event){ }); 
+ var stanki =[];
+	var blink=true;
+	  
+	function MapX(X) {
+		var mx = parseInt(X);
+		mx = mx / 10 -imgW/20;
+		return mx;
+	}
+
+	function MapY(Y) {
+		var my = parseInt(Y);
+		my =  imgH/20 - my / 10;
+		return my;
+	}
+	
+	var rect;
+	var bounds;
+	var rgb = '#00FF00'; // green
+	var marker;
+
+	
+	bounds=FlipLL([[-5.48906839313991,-6.799593593204482,0],[-6.345212590478235,-7.154220131089044,0],[-7.080400279811553,-7.71834948634439,0],[-7.6445296350669,-8.453537175677708,0],[-7.999156172951462,-9.309681373016033,0],[-8.12011268095647,-10.228437266155941,0],[-7.999156172951462,-11.14719315929585,0],[-7.644529635066901,-12.003337356634177,0],[-7.0804002798115535,-12.738525045967496,0],[-6.345212590478235,-13.302654401222842,0],[-5.489068393139909,-13.657280939107405,0],[-4.5703125,-13.778237447112412,0],[-3.651556606860091,-13.657280939107403,0],[-2.7954124095217647,-13.302654401222842,0],[-2.0602247201884465,-12.738525045967494,0],[-1.496095364933101,-12.003337356634177,0],[-1.1414688270485396,-11.14719315929585,0],[-1.0205123190435321,-10.228437266155943,0],[-1.1414688270485391,-9.309681373016035,0],[-1.4960953649331001,-8.453537175677711,0],[-2.0602247201884456,-7.718349486344393,0],[-2.795412409521762,-7.154220131089046,0],[-3.6515566068600864,-6.7995935932044835,0],[-5.48906839313991,-6.799593593204482,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.1';
+	//rect.bindPopup('Насос 1');
+	rect.bindTooltip('Насос 1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[22.68772590926417,-6.819858031727382,0],[21.879846318215215,-7.154492715104288,0],[21.186104385898975,-7.6868196224632115,0],[20.65377747854005,-8.380561554779451,0],[20.319142795163145,-9.188441145828405,0],[20.205005136430433,-10.055402736564234,0],[20.319142795163145,-10.922364327300066,0],[20.65377747854005,-11.73024391834902,0],[21.186104385898975,-12.423985850665261,0],[21.879846318215215,-12.956312758024184,0],[22.68772590926417,-13.29094744140109,0],[23.5546875,-13.405085100133805,0],[24.421649090735833,-13.29094744140109,0],[25.229528681784785,-12.956312758024183,0],[25.923270614101025,-12.42398585066526,0],[26.45559752145995,-11.73024391834902,0],[26.790232204836855,-10.922364327300066,0],[26.904369863569567,-10.055402736564236,0],[26.790232204836855,-9.188441145828408,0],[26.45559752145995,-8.380561554779455,0],[25.92327061410103,-7.686819622463215,0],[25.22952868178479,-7.15449271510429,0],[24.421649090735837,-6.819858031727383,0],[22.68772590926417,-6.819858031727382,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.2';
+	//rect.bindPopup('Насос 2');
+	rect.bindTooltip('Насос 2')
+	rect.on('contextmenu',function(event){ }); 
+	rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	
+	/*
+	bounds=FlipLL([[-22.746674781437346,-23.56723925278228,0],[-23.30414318077858,-23.798150224383843,0],[-23.782852147868702,-24.16547653421962,0],[-24.15017845770448,-24.644185501309742,0],[-24.38108942930604,-25.201653900650978,0],[-24.459848861557163,-25.79989118208832,0],[-24.381089429306044,-26.398128463525662,0],[-24.15017845770448,-26.955596862866898,0],[-23.782852147868702,-27.43430582995702,0],[-23.30414318077858,-27.801632139792797,0],[-22.746674781437346,-28.03254311139436,0],[-22.148437500000004,-28.11130254364548,0],[-21.55020021856266,-28.032543111394357,0],[-20.992731819221422,-27.801632139792797,0],[-20.514022852131305,-27.434305829957015,0],[-20.146696542295526,-26.955596862866898,0],[-19.915785570693963,-26.398128463525662,0],[-19.837026138442845,-25.79989118208832,0],[-19.915785570693963,-25.20165390065098,0],[-20.146696542295526,-24.644185501309742,0],[-20.514022852131305,-24.165476534219625,0],[-20.992731819221422,-23.798150224383846,0],[-21.550200218562658,-23.567239252782283,0],[-22.746674781437346,-23.56723925278228,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.11';
+	//rect.bindPopup('Напор мотор 1');
+	rect.bindTooltip('Напор мотор 1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	 
+	
+	bounds=FlipLL([[5.361289758972065,-23.97748489437799,0],[4.787946838458902,-24.21497130794514,0],[4.295606110999511,-24.592757635405928,0],[3.917819783538726,-25.085098362865317,0],[3.680333369971575,-25.65844128337848,0],[3.599331176917804,-26.273714024406416,0],[3.6803333699715743,-26.888986765434353,0],[3.9178197835387256,-27.462329685947516,0],[4.295606110999511,-27.954670413406905,0],[4.787946838458902,-28.33245674086769,0],[5.361289758972065,-28.569943154434842,0],[5.976562500000002,-28.650945347488612,0],[6.591835241027939,-28.569943154434842,0],[7.1651781615411005,-28.33245674086769,0],[7.657518889000492,-27.954670413406905,0],[8.035305216461277,-27.462329685947513,0],[8.272791630028427,-26.888986765434353,0],[8.353793823082198,-26.273714024406416,0],[8.272791630028427,-25.65844128337848,0],[8.035305216461277,-25.08509836286532,0],[7.657518889000492,-24.592757635405928,0],[7.165178161541102,-24.21497130794514,0],[6.591835241027941,-23.97748489437799,0],[5.361289758972065,-23.97748489437799,0]]) ;
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.12';
+	//rect.bindPopup('Напор мотор 2');
+	rect.bindTooltip('Напор мотор 2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	*/
+	
+	
+	function RCW(deviceID, ReadReg,ReadBit,WriteReg,WriteBit,NewValue){
+		 $.ajax({
+                dataType: "json",
+				type: 'POST',
+                url: 'rcw.aspx',
+				data:'id='+deviceID +'&rreg='+ReadReg+'&rbit='+ReadBit+'&wreg=' +WriteReg + '&wbit=' +WriteBit+'&newval='+NewValue,
+                success: function(data){
+					map.closePopup();
+				}
+            });
+	}
+	
+	
+	bounds=FlipLL([[-12.919442536273774,31.326325223421406,0],[-13.328500984451471,31.156887666382914,0],[-13.679767437290833,30.887351437147633,0],[-13.949303666526113,30.536084984308275,0],[-14.118741223564607,30.127026536130575,0],[-14.176533218902945,29.6880527498568,0],[-14.118741223564607,29.249078963583028,0],[-13.949303666526113,28.840020515405328,0],[-13.679767437290833,28.48875406256597,0],[-13.328500984451471,28.21921783333069,0],[-12.919442536273774,28.049780276292196,0],[-12.48046875,27.991988280953855,0],[-12.041494963726224,28.049780276292196,0],[-11.632436515548527,28.21921783333069,0],[-11.281170062709167,28.48875406256597,0],[-11.011633833473887,28.840020515405328,0],[-10.842196276435393,29.249078963583028,0],[-10.784404281097055,29.6880527498568,0],[-10.842196276435393,30.127026536130575,0],[-11.011633833473887,30.53608498430827,0],[-11.281170062709165,30.887351437147633,0],[-11.632436515548525,31.15688766638291,0],[-12.041494963726223,31.326325223421406,0],[-12.919442536273774,31.326325223421406,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.21';
+	rect.bindPopup(
+	'<h3>Задвижка 1.1M1</h3><hr/>'+
+	'<table class ="ctrl-popup" >'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(389,100,2,349,2,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(389,100,3,349,3,1);"></td></tr>'+
+	'</table><br/>' 
+	);
+	rect.bindTooltip('Управление 1.1M1')
+	rect.on('contextmenu',function(event){ }); 
+    rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	
+	bounds=FlipLL([[32.90486676635667,31.202071526933807,0],[32.52683308669929,31.045484849785915,0],[32.20220820656634,30.79639141829047,0],[31.953114775070894,30.471766538157514,0],[31.796528097923,30.09373285850014,0],[31.74311929839858,29.6880527498568,0],[31.796528097923,29.282372641213463,0],[31.953114775070894,28.90433896155609,0],[32.20220820656634,28.579714081423138,0],[32.52683308669929,28.33062064992769,0],[32.90486676635667,28.174033972779796,0],[33.31054687500001,28.120625173255373,0],[33.716226983643345,28.174033972779796,0],[34.09426066330072,28.33062064992769,0],[34.418885543433674,28.579714081423138,0],[34.66797897492912,28.90433896155609,0],[34.82456565207701,29.282372641213463,0],[34.87797445160143,29.6880527498568,0],[34.82456565207701,30.09373285850014,0],[34.66797897492912,30.471766538157514,0],[34.418885543433674,30.796391418290465,0],[34.09426066330072,31.045484849785915,0],[33.71622698364335,31.202071526933807,0],[32.90486676635667,31.202071526933807,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.22';
+	rect.bindPopup(
+	'<h3>Задвижка 1.1M2</h3><hr/>'+
+	'<table class ="ctrl-popup" >'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(389,100,4,349,4,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(389,100,5,349,5,0);"></td></tr>'+
+	'</table><br/>' 
+	);
+	rect.bindTooltip('Управление 1.1M2')
+	rect.on('contextmenu',function(event){ }); 
+    rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[-16.803559811576893,-8.526982010999388,0],[-17.228394298848574,-8.702954217391138,0],[-17.59320794357967,-8.982885572576276,0],[-17.87313929876481,-9.347699217307373,0],[-18.04911150515656,-9.772533704579054,0],[-18.109132347697145,-10.228437266155943,0],[-18.04911150515656,-10.68434082773283,0],[-17.87313929876481,-11.109175315004514,0],[-17.59320794357967,-11.47398895973561,0],[-17.228394298848574,-11.753920314920748,0],[-16.803559811576893,-11.929892521312498,0],[-16.347656250000004,-11.989913363853084,0],[-15.891752688423114,-11.929892521312498,0],[-15.466918201151431,-11.753920314920748,0],[-15.102104556420336,-11.473988959735609,0],[-14.822173201235199,-11.109175315004514,0],[-14.646200994843449,-10.684340827732832,0],[-14.586180152302862,-10.228437266155943,0],[-14.646200994843447,-9.772533704579056,0],[-14.822173201235199,-9.347699217307373,0],[-15.102104556420336,-8.982885572576278,0],[-15.466918201151431,-8.70295421739114,0],[-15.891752688423113,-8.526982010999388,0],[-16.803559811576893,-8.526982010999388,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.23';
+	rect.bindPopup(
+	'<h3>Насос 1М1</h3><hr/>'+
+	'<table class ="ctrl-popup" >'+
+	'<tr><td>Пуск: </td><td><img src="/images/start.png"  onclick="RCW(389,100,6,349,6,1);"></td></tr>'+
+	'</table><br/>' 
+	);
+	rect.bindTooltip('Управление 1M1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[11.166176956692764,-8.517050717627427,0],[10.760462218653284,-8.685103264578027,0],[10.412067074803648,-8.952436260934665,0],[10.144734078447012,-9.3008314047843,0],[9.97668153149641,-9.70654614282378,0],[9.919361937306569,-10.141931686131018,0],[9.97668153149641,-10.577317229438256,0],[10.14473407844701,-10.983031967477734,0],[10.412067074803648,-11.331427111327372,0],[10.760462218653284,-11.59876010768401,0],[11.166176956692764,-11.76681265463461,0],[11.601562500000002,-11.824132248824451,0],[12.03694804330724,-11.76681265463461,0],[12.44266278134672,-11.598760107684008,0],[12.791057925196355,-11.33142711132737,0],[13.058390921552993,-10.983031967477734,0],[13.226443468503593,-10.577317229438256,0],[13.283763062693435,-10.141931686131018,0],[13.226443468503593,-9.70654614282378,0],[13.058390921552993,-9.300831404784303,0],[12.791057925196355,-8.952436260934666,0],[12.442662781346721,-8.685103264578029,0],[12.036948043307243,-8.517050717627429,0],[11.166176956692764,-8.517050717627427,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.24';
+	rect.bindPopup(
+	'<h3>Насос 1М2</h3><hr/>'+
+	'<table class ="ctrl-popup" >'+
+	'<tr><td>Пуск: </td><td><img src="/images/start.png"  onclick="RCW(389,100,7,349,7,1);"></td></tr>'+
+	'</table><br/>' 
+	);
+	rect.bindTooltip('Управление 1M2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	/*
+	bounds=FlipLL([[33.965689961446216,-9.780751779969343,0],[33.101967694483506,-10.138517257068933,0],[32.36027256923684,-10.707639943523134,0],[31.79114988278264,-11.449335068769795,0],[31.43338440568305,-12.313057335732509,0],[31.311357263966997,-13.239945499286298,0],[31.43338440568305,-14.166833662840089,0],[31.79114988278264,-15.030555929802803,0],[32.36027256923684,-15.772251055049466,0],[33.101967694483506,-16.341373741503666,0],[33.965689961446216,-16.699139218603257,0],[34.89257812500001,-16.82116636031931,0],[35.8194662885538,-16.699139218603257,0],[36.683188555516516,-16.341373741503666,0],[37.42488368076317,-15.772251055049464,0],[37.994006367217374,-15.030555929802803,0],[38.351771844316964,-14.16683366284009,0],[38.47379898603302,-13.2399454992863,0],[38.351771844316964,-12.31305733573251,0],[37.994006367217374,-11.449335068769798,0],[37.42488368076317,-10.707639943523136,0],[36.683188555516516,-10.138517257068937,0],[35.819466288553805,-9.780751779969345,0],[33.965689961446216,-9.780751779969343,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.51';
+	//rect.bindPopup('Уровень 1');
+	rect.bindTooltip('Уровень 1')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+
+	bounds=FlipLL([[34.081946298888354,5.374396558057001,0],[33.244656667941406,5.027579837284409,0],[32.52565976182165,4.475874106945348,0],[31.973954031482588,3.756877200825594,0],[31.627137310709998,2.919587569878643,0],[31.508844585882798,2.0210651187669906,0],[31.627137310709998,1.1225426676553383,0],[31.973954031482588,0.2852530367083863,0],[32.52565976182165,-0.43374386941136756,0],[33.244656667941406,-0.9854495997504298,0],[34.081946298888354,-1.3322663205230207,0],[34.98046875000001,-1.4505590453502184,0],[35.87899120111166,-1.3322663205230203,0],[36.716280832058615,-0.9854495997504289,0],[37.435277738178364,-0.4337438694113662,0],[37.98698346851743,0.285253036708387,0],[38.33380018929002,1.1225426676553374,0],[38.452092914117216,2.0210651187669892,0],[38.33380018929002,2.9195875698786407,0],[37.98698346851743,3.7568772008255915,0],[37.43527773817837,4.475874106945344,0],[36.716280832058615,5.0275798372844065,0],[35.87899120111167,5.374396558056999,0],[34.081946298888354,5.374396558057001,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.52';
+	//rect.bindPopup('Уровень 2');
+	rect.bindTooltip('Уровень 2')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	
+	bounds=FlipLL([[33.99950278786116,17.42695971102511,0],[33.16728905907155,17.082245497767367,0],[32.45265092894997,16.53388437388626,0],[31.904289805068863,15.819246243764685,0],[31.55957559181112,14.987032514975072,0],[31.44199999314309,14.093957177836225,0],[31.55957559181112,13.200881840697377,0],[31.904289805068863,12.368668111907764,0],[32.45265092894997,11.654029981786188,0],[33.16728905907155,11.10566885790508,0],[33.99950278786116,10.760954644647338,0],[34.89257812500001,10.643379045979305,0],[35.78565346213885,10.76095464464734,0],[36.61786719092847,11.105668857905082,0],[37.33250532105004,11.654029981786188,0],[37.88086644493115,12.368668111907766,0],[38.22558065818889,13.200881840697376,0],[38.34315625685693,14.093957177836224,0],[38.22558065818889,14.98703251497507,0],[37.88086644493115,15.819246243764681,0],[37.33250532105005,16.53388437388626,0],[36.61786719092847,17.082245497767364,0],[35.78565346213886,17.426959711025106,0],[33.99950278786116,17.42695971102511,0]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.53';
+	//rect.bindPopup('Уровень 3');
+	rect.bindTooltip('Уровень 3')
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	*/
+	
+	bounds=FlipLL([[-14.23828125,20.797201434307],[-14.23828125,22.268764039073968],[-10.810546875000002,22.268764039073968],[-10.810546875000002,20.797201434307],[-14.23828125,20.797201434307]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.71';
+	//rect.bindPopup('Задвижка 1.1M1');
+	rect.bindTooltip('Задвижка 1.1M1');
+	rect.on('contextmenu',function(event){ }); 
+	rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[31.640625000000004,20.797201434307],[31.640625000000004,22.187404991398786],[34.98046875000001,22.187404991398786],[34.98046875000001,20.797201434307],[31.640625000000004,20.797201434307]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.72';
+	//rect.bindPopup('Задвижка 1.1M2');
+	rect.bindTooltip('Задвижка 1.1M2');
+	rect.on('contextmenu',function(event){ }); 
+	rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	/*
+	bounds=FlipLL([[-5.185546875000001,2.723583083348398],[-5.185546875000001,6.140554782450308],[-3.6035156250000004,6.140554782450308],[-3.6035156250000004,2.723583083348398],[-5.185546875000001,2.723583083348398]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.73';
+	//rect.bindPopup('Задвижка 3');
+	rect.bindTooltip('Задвижка 3');
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[-5.097656250000001,-1.1425024037061522],[-5.097656250000001,2.0210651187669897],[-3.7792968750000004,2.0210651187669897],[-3.7792968750000004,-1.1425024037061522],[-5.097656250000001,-1.1425024037061522]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.74';
+	//rect.bindPopup('Задвижка 4');
+	rect.bindTooltip('Задвижка 4');
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[22.763671875000004,2.5479878714713835],[22.763671875000004,5.965753671065536],[24.345703125,5.965753671065536],[24.345703125,2.5479878714713835],[22.763671875000004,2.5479878714713835]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.75';
+	//rect.bindPopup('Задвижка 5');
+	rect.bindTooltip('Задвижка 5');
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	
+	bounds=FlipLL([[22.851562500000004,-0.9667509997666298],[22.851562500000004,1.9332268264771233],[24.345703125,1.9332268264771233],[24.345703125,-0.9667509997666298],[22.851562500000004,-0.9667509997666298]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '3.76';
+	//rect.bindPopup('Задвижка 6');
+	rect.bindTooltip('Задвижка 6');
+	rect.on('contextmenu',function(event){ }); 
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect);
+	*/
+	
+	
+	function FlipLL(b) {
+		var fb;
+		var point;
+		var j;
+		fb=[];
+		for (j = 0; j < b.length; j++) {
+			 point =new  L.latLng(
+			  b[j][1],               
+			  b[j][0],               
+               b[j][2]             
+            );
+			fb.push(point)
+		}
+		return fb;
+	}
+
+
+    function ReloadData() {
+
+            function OnRequestReady(data) {
+
+                $.each(data.data, function (i, v) {
+                    var ok = false;
+                    var rect;
+                    var j;
+                    for (j = 0; j < stanki.length; j++) {
+                        if (stanki[j].tag == v.ID) {
+                            ok = true;
+                            rect = stanki[j];
+                            break;
+                        }
+                    }
+
+                    if (ok) {
+						if(v.BLINK=='YES'){
+							blink=true;
+						}else{
+							blink=false;
+						}
+					
+						switch (v.COLOR) {
+							case 'GREEN':
+								 rgb = '#00FF00'; // green
+								break;
+							case 'YELLOW':
+								rgb = '#dddd00';
+								break;
+							case 'RED':
+								 rgb = '#FF0000'; //red
+								break;
+							default:
+								rgb = '#000000'; //black
+								break;
+						}
+                        rect.setStyle({ color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 1 });
+                        rect.on('contextmenu',function(event){ }); 
+						rect.blink = blink;
+					}
+					if(v.INFO !=null){
+						var item=document.getElementById('v' +v.ID);
+						if( item!=null){
+							item.innerHTML =v.INFO;
+						}else{
+							console.log(v.ID);
+						}
+					}
+                    
+                });
+
+
+            };
+           $.ajax({
+                dataType: "json",
+                url: 'l23.aspx',
+                success: OnRequestReady
+            });
+        }
+        var blinkMode = false;
+        function Blinker() {
+            blinkMode = !blinkMode;
+            var j;
+            for (j = 0; j < stanki.length; j++) {
+
+                rect = stanki[j];
+                if (rect.blink == true) {
+                    if (blinkMode) {
+                        rect.setStyle({  fillOpacity: 0.1 });
+                    } else {
+                        rect.setStyle({  fillOpacity: 0.5 });
+                    }
+                }
+               
+            }
+           
+
+        }
+
+        ReloadData();
+
+		var intervalID = window.setInterval(ReloadData, 1000);   
+
+		var intervalID2 = window.setInterval(Blinker, 500);   
+
+</script>
+ 
+</body>
+</html>
