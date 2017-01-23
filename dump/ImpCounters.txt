@@ -1,0 +1,5 @@
+USERID=system/password@ORA
+FILE=counters20120829.dmp
+FROMUSER=counters
+TOUSER=counters
+LOG=counters20120829.log

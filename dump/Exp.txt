@@ -1,0 +1,5 @@
+USERID=counters/counters@ora
+FILE=G:\Distrib\AREAL\DB\vodopad.dmp
+OWNER=COUNTERS
+LOG=G:\Distrib\AREAL\DB\vodopad_export.log
+

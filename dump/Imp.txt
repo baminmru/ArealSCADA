@@ -1,0 +1,6 @@
+USERID=counters/counters@ora
+BUFFER=10000000
+FILE=G:\Distrib\AREAL\DB\vodopad.dmp
+FROMUSER=counters
+TOUSER=counters
+LOG=G:\Distrib\AREAL\DB\vodopad_import.log
