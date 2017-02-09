@@ -46,7 +46,7 @@ Partial Class l28
 
 		'''''''''''''''''''''''''''''
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
         If dt.Rows.Count > 0 Then
             AddValue(dt2, dt, "Расход на трубопроводе В1.ЭН", "V1", "206")
@@ -110,7 +110,7 @@ Partial Class l28
          T211 =0
 		 T212 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=397 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=397 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -167,7 +167,7 @@ Partial Class l28
          T211 =0
 		 T212 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=398 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=398 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -211,7 +211,7 @@ Partial Class l28
          T202 =0
          T211 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=399 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=399 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -271,7 +271,7 @@ Partial Class l28
         dr("BLINK") = "NO"
 		dr("INFO") =" OK"
 		 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=402 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=402 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
 
 		 If dt.Rows.Count > 0 Then
@@ -335,7 +335,7 @@ Partial Class l28
         dr("INFO") = " OK"
 
 		 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=403 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=403 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -522,7 +522,7 @@ Partial Class l28
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=392 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=392 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -641,7 +641,7 @@ Partial Class l28
          T211 =0
 		 T212 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -729,7 +729,7 @@ Partial Class l28
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -808,7 +808,7 @@ Partial Class l28
          T211 =0
 		 T212 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=394 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=394 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -925,7 +925,7 @@ Partial Class l28
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
 		 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=395 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=395 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -951,13 +951,13 @@ Partial Class l28
         End If
 
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_8"
-			T0 =0
+		T0 =0
          T202 =0
 		 T203 =0
          T211 =0
 		 T212 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=396 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=396 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)

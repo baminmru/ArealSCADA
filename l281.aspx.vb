@@ -43,7 +43,7 @@ Partial Class l281
 		
 			'''''''''''''''''''''''''''''
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
         If dt.Rows.Count > 0 Then
             AddValue(dt2, dt, "Расход на трубопроводе В1.ЭН", "V1", "206")
@@ -92,7 +92,7 @@ Partial Class l281
 
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_12"
 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=397 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=397 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -297,7 +297,7 @@ Partial Class l281
          T211 =0
          T100 =0
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=398 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=398 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -441,7 +441,7 @@ Partial Class l281
          T202 =0
          T211 =0
          T100 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=399 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=399 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)

@@ -71,7 +71,7 @@ Partial Class l1
 		 T211 =0
 		 T212 =0
          T250 =0
-			dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=389 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+			dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=389 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
@@ -153,7 +153,7 @@ Partial Class l1
 		
         dt2.Rows.Add(dr)
 
-		'''' L4
+		''''''''''''''''''''''''''''''''''' L4
 		T0 =0
 		 T201 =0
 		 T100 =0
@@ -164,7 +164,7 @@ Partial Class l1
 		 T212 =0
          T250 =0
 		
-		dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=401 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+		dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=401 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
 		
         If dt.Rows.Count > 0 Then
@@ -243,7 +243,7 @@ Partial Class l1
 		
 		
 
-		'''' L8
+		''''''''''''''''''''''''''''''''''''''''''''''''' L8
 		T0 =0
 		 T201 =0
 		 T100 =0
@@ -273,7 +273,7 @@ Partial Class l1
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=397 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=397 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -328,7 +328,7 @@ Partial Class l1
         End If
 		
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_13"
-		T0 =0
+		 T0 =0
 		 T201 =0
 		 T100 =0
          T202 =0
@@ -337,7 +337,7 @@ Partial Class l1
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=398 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=398 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -346,16 +346,12 @@ Partial Class l1
             End If
 
             If Not (TypeOf (dt.Rows(0)("T2")) Is DBNull) Then
-                T202 = CType(dt.Rows(0)("T2"), UShort)
+                T100 = CType(dt.Rows(0)("T2"), UShort)
             Else
-                T202 = 0
+                T100 = 0
             End If
 
-            If Not (TypeOf (dt.Rows(0)("T3")) Is DBNull) Then
-                T211 = CType(dt.Rows(0)("T3"), UShort)
-            Else
-                T211 = 0
-            End If
+           
         End If
 		
 		if dt.Rows.Count=0 then
@@ -363,12 +359,70 @@ Partial Class l1
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
 		end if
 		
-        If cm.IsBitSet(T0, 9) Then
+        If cm.IsBitSet(T100, 1) Then
             dr("COLOR") = "RED"
             dr("INFO") = " Авария"
             dr("BLINK") = "YES"
         End If
-      
+		
+		If cm.IsBitSet(T100, 3) Then
+            dr("COLOR") = "RED"
+            dr("INFO") = " Авария"
+            dr("BLINK") = "YES"
+        End If
+		
+		
+		
+		 If cm.IsBitSet(T100, 5) Then
+            dr("COLOR") = "RED"
+            dr("INFO") = " Авария"
+            dr("BLINK") = "YES"
+        End If
+		
+		
+		   '''''''''''''''''''''''''''''''  "ЦВО_ШУ_14"
+		 T0 =0
+         T202 =0
+         T211 =0
+         T100 =0
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=399 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        If dt.Rows.Count > 0 Then
+            If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
+                T0 = CType(dt.Rows(0)("T1"), UShort)
+            Else
+                T0 = 0
+            End If
+
+            If Not (TypeOf (dt.Rows(0)("T2")) Is DBNull) Then
+                T100 = CType(dt.Rows(0)("T2"), UShort)
+            Else
+                T100 = 0
+            End If
+		else
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+        End If
+
+
+		If cm.IsBitSet(T100, 1) Then
+            dr("COLOR") = "RED"
+            dr("INFO") = " Авария"
+            dr("BLINK") = "YES"
+        End If
+		
+		If cm.IsBitSet(T100, 3) Then
+            dr("COLOR") = "RED"
+            dr("INFO") = " Авария"
+            dr("BLINK") = "YES"
+        End If
+		
+		
+		
+		 If cm.IsBitSet(T100, 5) Then
+            dr("COLOR") = "RED"
+            dr("INFO") = " Авария"
+            dr("BLINK") = "YES"
+        End If
 		
 		'''''''''''''''  подсистема 2
 		
@@ -382,7 +436,7 @@ Partial Class l1
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=402 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=402 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
 
 		 If dt.Rows.Count > 0 Then
@@ -404,7 +458,14 @@ Partial Class l1
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
 		end if
 
-		If cm.IsBitSet(T0, 11) Then
+		If cm.IsBitSet(T100, 1) Then
+			dr("COLOR") = "RED"
+			dr("INFO") = " Авария"
+			dr("BLINK") = "YES"
+        End If
+		
+		
+		If cm.IsBitSet(T100, 3) Then
 			dr("COLOR") = "RED"
 			dr("INFO") = " Авария"
 			dr("BLINK") = "YES"
@@ -415,16 +476,14 @@ Partial Class l1
 		'''''''''''''''  подсистема 3
 		
 		'''''''''''''''''''''''''''''''  "ЦВО_ШУ_18"
-     T0 =0
-		 T201 =0
-		 T100 =0
+         T0 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=403 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+		 
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=403 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -461,17 +520,17 @@ Partial Class l1
             Else
                 T100 = 0
             End If
-        End If
-		if dt.Rows.Count=0 then
+		else
 		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
-		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"			
+        End If
 	
         If cm.IsBitSet(T100, 1) Then
             dr("COLOR") = "RED"
             dr("BLINK") = "YES"
 			dr("INFO") = " Авария"
-	    End If
+	
+        End If
     
 
         If cm.IsBitSet(T100, 3) Then
@@ -598,15 +657,15 @@ Partial Class l1
 		
 		 '''''''''''''''''''''''''''''''  "ЦВО_ШУ_1"
 		 T0 =0
-		 T201 =0
-		 T100 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=392 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+		 
+		
+		
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=392 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -636,16 +695,19 @@ Partial Class l1
             Else
                 T212 = 0
             End If
-        End If
 
-       if dt.Rows.Count=0 then
+		else
 		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if
+
+        End If
+
+       
+      
 
         If cm.IsBitSet(T211, 2) Then
             dr("COLOR") = "RED"
-            dr("INFO") = " Авария"
+            dr("INFO") = "Авария"
             dr("BLINK") = "YES"
         End If
 
@@ -716,16 +778,13 @@ Partial Class l1
 
 
         '''''''''''' ЦВО_ШУ_2
-		 T0 =0
-		 T201 =0
-		 T100 =0
+		T0 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -755,12 +814,11 @@ Partial Class l1
             Else
                 T212 = 0
             End If
+		else
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"			
         End If
 
-		if dt.Rows.Count=0 then
-		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
-		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if
 
         If cm.IsBitSet(T211, 2) Then
             dr("COLOR") = "RED"
@@ -795,21 +853,22 @@ Partial Class l1
             dr("BLINK") = "YES"
         End If
 
-      
+     
+
 		
 		'''''''''''''''''' Подсистема 5 
 		
 		 '''''''''''''''''''''''''''''''  "ЦВО_ШУ_2"
-         T0 =0
-		 T201 =0
-		 T100 =0
+		T0 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+		 
+	
+		
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=393 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -839,12 +898,15 @@ Partial Class l1
             Else
                 T212 = 0
             End If
-        End If
 
-		if dt.Rows.Count=0 then
+
+		else
 		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if      
+        End If
+
+       
+       
 
         
         If cm.IsBitSet(T212, 2) Then
@@ -859,19 +921,19 @@ Partial Class l1
             dr("BLINK") = "YES"
         End If
 
-        If cm.IsBitSet(T211, 8) Then
+        If cm.IsBitSet(T212, 8) Then
             dr("COLOR") = "RED"
             dr("INFO") = " Авария"
             dr("BLINK") = "YES"
         End If
 
-        If cm.IsBitSet(T211, 11) Then
+        If cm.IsBitSet(T212, 11) Then
             dr("COLOR") = "RED"
             dr("INFO") = " Авария"
             dr("BLINK") = "YES"
         End If
 
-        If cm.IsBitSet(T211, 14) Then
+        If cm.IsBitSet(T212, 14) Then
             dr("COLOR") = "RED"
             dr("INFO") = " Авария"
             dr("BLINK") = "YES"
@@ -879,16 +941,13 @@ Partial Class l1
 
         '''''''''''' ЦВО_ШУ_3
 
-         T0 =0
-		 T201 =0
-		 T100 =0
+		 T0 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=394 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=394 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -919,12 +978,11 @@ Partial Class l1
                 T212 = 0
             End If
 
-        End If
-		
-		if dt.Rows.Count=0 then
+		else
 		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if
+
+        End If
 
         If cm.IsBitSet(T211, 2) Then
             dr("COLOR") = "RED"
@@ -993,16 +1051,16 @@ Partial Class l1
 		''''''''''''''' Подсистема 6 '''''''''
 		
 		'''''''''''''''''''''''''''''''  "ЦВО_ШУ_4"
-         T0 =0
-		 T201 =0
-		 T100 =0
+		 T0 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=395 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+		 
+	
+		 
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=395 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -1016,12 +1074,10 @@ Partial Class l1
                 T100 = 0
             End If
 
-        End If
-
-		if dt.Rows.Count=0 then
+		else
 		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if
+        End If
 
         If cm.IsBitSet(T0, 9) Then
             dr("COLOR") = "RED"
@@ -1031,15 +1087,12 @@ Partial Class l1
 
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_8"
 		T0 =0
-		 T201 =0
-		 T100 =0
          T202 =0
-         T203 =0
-         T204 =0
-		 T211 =0
+		 T203 =0
+         T211 =0
 		 T212 =0
-         T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=396 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+         T100 =0
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=396 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -1052,12 +1105,11 @@ Partial Class l1
             Else
                 T100 = 0
             End If
-        End If
-
-		if dt.Rows.Count=0 then
+		else
 		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
 		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
-		end if
+        End If
+
 
         If cm.IsBitSet(T0, 9) Then
             dr("COLOR") = "RED"
@@ -1068,7 +1120,7 @@ Partial Class l1
         dt2.Rows.Add(dr)
 		
 		
-		''' L9
+		''''''''''''''''''''''''''''''''''''' L9
 		
 		''''''''''''''''' подсистема 1
 		
@@ -1089,7 +1141,7 @@ Partial Class l1
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=405 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=405 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -1153,7 +1205,7 @@ T0 =0
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=406 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=406 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -1199,7 +1251,7 @@ T0 =0
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=407 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=407 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -1292,7 +1344,7 @@ T0 =0
 		
 		
         '''''''''''''''''''''''''''''''  "ЦМО_ШУ_22"
-T0 =0
+		T0 =0
 		 T201 =0
 		 T100 =0
          T202 =0
@@ -1301,7 +1353,7 @@ T0 =0
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=408 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=408 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -1343,7 +1395,7 @@ T0 =0
 		 T211 =0
 		 T212 =0
          T250 =0
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=409 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=409 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)

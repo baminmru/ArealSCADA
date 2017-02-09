@@ -50,7 +50,7 @@ Partial Class l294
         End If
 
 
-        '  dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=389 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        '  dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=389 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         Dim dt2 As DataTable
         dt2 = cm.GetOutputTab
         cm.GetCommonParams(dt2)
@@ -59,7 +59,7 @@ Partial Class l294
 		'''''''''''''''''''''''''''''''''''''''''
 		
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
         If dt.Rows.Count > 0 Then
 		 
@@ -80,7 +80,7 @@ Partial Class l294
 
         '''''''''''''''''''''''''''''''  "ЦМО_ШУ_22"
 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=408 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=408 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)

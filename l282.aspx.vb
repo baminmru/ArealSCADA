@@ -45,7 +45,7 @@ Partial Class l282
 		
 		'''''''''''''''''''''''''''''
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
         If dt.Rows.Count > 0 Then
             AddValue(dt2, dt, "Расход на трубопроводе В1.ЭН", "V1", "206")
@@ -92,7 +92,7 @@ Partial Class l282
 
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_17"
 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=402 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=402 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
 
 		 If dt.Rows.Count > 0 Then

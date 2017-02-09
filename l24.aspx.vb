@@ -55,7 +55,7 @@ Partial Class l24
 
 
 
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=401 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=401 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
 		
 		'''''''''''''''''''''''''''''
