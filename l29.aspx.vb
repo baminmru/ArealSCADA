@@ -44,7 +44,8 @@ Partial Class l29
             jj.msg = "Error"
             Response.Clear()
             Response.Write(JsonConvert.SerializeObject(jj))
-            Response.End()
+            Response.End() 
+ cm.Close()
             Exit Sub
         End If
 
@@ -101,6 +102,12 @@ Partial Class l29
 		 T201 =0
          T211 =0
 		 
+		dr = dt2.NewRow
+        dr("ID") = "9.1.1"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+		 
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=405 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
@@ -114,17 +121,10 @@ Partial Class l29
             Else
                 T211 = 0
             End If
+		else
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"	
         End If
-
-
-
-
-      
-        dr = dt2.NewRow
-        dr("ID") = "9.1.1"
-        dr("COLOR") = "GREEN"
-        dr("BLINK") = "NO"
-        dr("INFO") = " OK"
 
         
         If cm.IsBitSet(T211, 1) Then
@@ -146,9 +146,13 @@ Partial Class l29
         dr("COLOR") = "GREEN"
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
+		
+		if dt.Rows.Count=0 then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
 
-        
-      
+
 
         If cm.IsBitSet(T211, 5) Then
             dr("COLOR") = "RED"
@@ -169,10 +173,19 @@ Partial Class l29
 
 
         '''''''''''''''''''''''''''''''  "ЦМО_ШУ_20"
-	 T0 =0
+		 T0 =0
          T100 =0
 		 T201 =0
          T211 =0
+		 
+		
+        dr = dt2.NewRow
+        dr("ID") = "9.2"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+
+		 
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=406 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
@@ -186,6 +199,9 @@ Partial Class l29
             Else
                 T100 = 0
             End If
+		else
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
         End If
 
 
@@ -198,7 +214,11 @@ Partial Class l29
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
 
-      
+      	if dt.Rows.Count=0 then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
+
 
         If cm.IsBitSet(T100, 1) Then
             dr("COLOR") = "RED"
@@ -219,10 +239,18 @@ Partial Class l29
 		'''''''''''''' Подсистема 3 + 5 
 		
 		'''''''''''''''''''''''''''''''  "ЦМО_ШУ_21"
-	 T0 =0
+		 T0 =0
          T100 =0
 		 T201 =0
          T211 =0
+
+      
+        dr = dt2.NewRow
+        dr("ID") = "9.3.1"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+		
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=407 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
@@ -248,17 +276,12 @@ Partial Class l29
             Else
                 T211 = 0
             End If
+		else
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
         End If
 
 
-
-
-      
-        dr = dt2.NewRow
-        dr("ID") = "9.3.1"
-        dr("COLOR") = "GREEN"
-        dr("BLINK") = "NO"
-        dr("INFO") = " OK"
 
         If cm.IsBitSet(T100, 1) Then
             dr("COLOR") = "RED"
@@ -280,6 +303,11 @@ Partial Class l29
         dr("COLOR") = "GREEN"
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
+		
+		if dt.Rows.Count=0 then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
 
         If cm.IsBitSet(T100, 1) Then
             dr("COLOR") = "RED"
@@ -306,6 +334,11 @@ Partial Class l29
         dr("COLOR") = "GREEN"
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
+		
+		if dt.Rows.Count=0 then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
 
         If cm.IsBitSet(T100, 5) Then
             dr("COLOR") = "RED"
@@ -343,6 +376,13 @@ Partial Class l29
          T100 =0
 		 T201 =0
          T211 =0
+		 
+		 dr = dt2.NewRow
+        dr("ID") = "9.4"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=408 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
@@ -360,17 +400,10 @@ Partial Class l29
 			 
         End If
 
-
-
-
-        '1M1
-        dr = dt2.NewRow
-        dr("ID") = "9.4"
-        dr("COLOR") = "GREEN"
-        dr("BLINK") = "NO"
-        dr("INFO") = " OK"
-
-      
+		if dt.Rows.Count=0 then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
 
         If cm.IsBitSet(T0, 11) Then
             dr("COLOR") = "RED"
@@ -384,10 +417,18 @@ Partial Class l29
        ''''''''''''''''' подсистема 6
 	   
 	    '''''''''''''''''''''''''''''''  "ЦМО_ШУ_23"
-	 T0 =0
+	     T0 =0
          T100 =0
 		 T201 =0
          T211 =0
+		 
+		dr = dt2.NewRow
+        dr("ID") = "9.6"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+
+		
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=409 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
@@ -405,16 +446,10 @@ Partial Class l29
 			
         End If
 
-
-
-
-        '1M1
-        dr = dt2.NewRow
-        dr("ID") = "9.6"
-        dr("COLOR") = "GREEN"
-        dr("BLINK") = "NO"
-        dr("INFO") = " OK"
-
+		if dt.Rows.Count=0 then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
      
 
         If cm.IsBitSet(T100, 1) Then
@@ -440,7 +475,8 @@ Partial Class l29
         jj.msg = "OK"
         Response.Clear()
         Response.Write(JsonConvert.SerializeObject(jj))
-        Response.End()
+        Response.End() 
+ cm.Close()
 
 
 

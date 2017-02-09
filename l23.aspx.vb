@@ -23,7 +23,8 @@ Partial Class l23
             jj.msg = "Error"
             Response.Clear()
             Response.Write(JsonConvert.SerializeObject(jj))
-            Response.End()
+            Response.End() 
+ cm.Close()
             Exit Sub
         End If
 
@@ -139,7 +140,7 @@ Partial Class l23
             End If
           
         End If
-        If cm.IsBitSet(v, 4) Then
+        If cm.IsBitSet(T0, 4) Then
             dr("COLOR") = "RED"
             dr("INFO") = "Авария"
             dr("BLINK") = "YES"
@@ -176,6 +177,54 @@ Partial Class l23
         dt2.Rows.Add(dr)
 
 
+		 dr = dt2.NewRow
+        dr("ID") = "3.51"
+        dr("COLOR") = ""
+        dr("BLINK") = "NO"
+		dr("INFO") = "0"
+		
+        If cm.IsBitSet(T0, 8) Then
+            dr("INFO") = "1"
+			dr("COLOR") = "GREEN"
+        End If
+
+        If cm.IsBitSet(T0, 9) Then
+            dr("INFO") = "2"
+			dr("COLOR") = "GREEN"
+        End If
+       
+
+        dt2.Rows.Add(dr)
+		
+		
+		 dr = dt2.NewRow
+        dr("ID") = "3.52"
+        dr("COLOR") = ""
+        dr("BLINK") = "NO"
+		dr("INFO") = "0"
+		
+     
+        If cm.IsBitSet(T0, 10) Then
+            dr("INFO") = "3"
+        	dr("COLOR") = "GREEN"
+        End If
+		
+
+        dt2.Rows.Add(dr)
+
+		
+ 	    dr = dt2.NewRow
+        dr("ID") = "3.53"
+        dr("COLOR") = ""
+        dr("BLINK") = "NO"
+		dr("INFO") = "0"
+    
+		If cm.IsBitSet(T0, 11) Then
+            dr("INFO") = "4"
+			dr("COLOR") = "GREEN"
+        End If
+        dt2.Rows.Add(dr)
+		
 
         dr = dt2.NewRow
         dr("ID") = "3.71"
@@ -331,7 +380,8 @@ Partial Class l23
         jj.msg = "OK"
         Response.Clear()
         Response.Write(JsonConvert.SerializeObject(jj))
-        Response.End()
+        Response.End() 
+ cm.Close()
 
 
 

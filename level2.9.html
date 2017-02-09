@@ -208,15 +208,25 @@ function GetDitail(sid){
 	rgb = '#eeeeee';
 	var marker;
 	
-
+	function RCW(deviceID, QReg, Reg1, Bit1, Val1, Reg2, Bit2, Val2) {
+	    $.ajax({
+	        dataType: "json",
+	        type: 'POST',
+	        url: 'rcw.aspx',
+	        data: 'id=' + deviceID + '&qreg=' + QReg + '&reg1=' + Reg1 + '&bit1=' + Bit1 + '&val1=' + Val1 + '&reg2=' + Reg2 + '&bit2=' + Bit2 + '&val2=' + Val2,
+	        success: function (data) {
+	            map.closePopup();
+	        }
+	    });
+	}
 	
 	bounds=FlipLL([[-50.537109375,5.61598581915534],[-50.537109375,17.056784609942554],[-22.851562500000004,17.056784609942554],[-22.851562500000004,5.61598581915534],[-50.537109375,5.61598581915534]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.1.1';
 	//rect.bindPopup('Подсистема 1');
-	rect.bindTooltip('Подсистема 1')
+	rect.bindTooltip('Подсистема 1');
 	rect.on('contextmenu',function(event){ window.location="level2.9.1.html";});
-	rect.on('contextmenu',function(event){ }); 
+	rect.on('dblclick',function(event){ window.location="level2.9.1.html";});
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -226,10 +236,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.1.2';
 	//rect.bindPopup('Подсистема 1');
-	rect.bindTooltip('Подсистема 1')
+	rect.bindTooltip('Подсистема 1');
 	rect.on('contextmenu',function(event){ window.location="level2.9.1.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.1.html";});
-	rect.on('contextmenu',function(event){ }); 
+	
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -239,10 +249,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.2';
 	//rect.bindPopup('Подсистема 2');
-	rect.bindTooltip('Подсистема 2')
+	rect.bindTooltip('Подсистема 2');
 	rect.on('contextmenu',function(event){ window.location="level2.9.2.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.2.html";});
-	rect.on('contextmenu',function(event){ }); 
+
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -251,10 +261,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.3.1';
 	//rect.bindPopup('Подсистема 3');
-	rect.bindTooltip('Подсистема 3')
+	rect.bindTooltip('Подсистема 3');
 	rect.on('contextmenu',function(event){ window.location="level2.9.3.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.3.html";});
-	rect.on('contextmenu',function(event){ }); 
+	
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -263,22 +273,21 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.3.2';
 	//rect.bindPopup('Подсистема 3');
-	rect.bindTooltip('Подсистема 3')
+	rect.bindTooltip('Подсистема 3');
 	rect.on('contextmenu',function(event){ window.location="level2.9.3.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.3.html";});
-	rect.on('contextmenu',function(event){ }); 
+
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
 	
 	
-	bounds=FlipLL([[6.459960937500001,-19.808054128088575],[6.459960937500001,-7.18810087117902],[17.622070312500004,-7.18810087117902],[17.622070312500004,-19.808054128088575],[6.459960937500001,-19.808054128088575]]);
+	bounds=FlipLL([[6.859960937500001,-19.808054128088575],[6.859960937500001,-7.18810087117902],[17.622070312500004,-7.18810087117902],[17.622070312500004,-19.808054128088575],[6.459960937500001,-19.808054128088575]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.4';
 	//rect.bindPopup('Подсистема 4');
-	rect.bindTooltip('Подсистема 4')
-	rect.on('contextmenu',function(event){ }); 
- rect.blink = blink;
+	rect.bindTooltip('Подсистема 4');
+	rect.blink = blink;
 	rect.on('contextmenu',function(event){ window.location="level2.9.4.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.4.html";});
 	rect.addTo(map);
@@ -288,10 +297,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.5';
 	//rect.bindPopup('Подсистема 5');
-	rect.bindTooltip('Подсистема 5')
+	rect.bindTooltip('Подсистема 5');
 	rect.on('contextmenu',function(event){ window.location="level2.9.5.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.5.html";});
-	rect.on('contextmenu',function(event){ }); 
+
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -300,10 +309,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.6';
 	//rect.bindPopup('Подсистема 6');
-	rect.bindTooltip('Подсистема 6')
+	rect.bindTooltip('Подсистема 6');
 	rect.on('contextmenu',function(event){ window.location="level2.9.6.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.6.html";});
-	rect.on('contextmenu',function(event){ }); 
+	
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);

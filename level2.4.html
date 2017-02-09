@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 	<meta charset="UTF-8">
 	<title>Каменогорск. Уровень 2. Насосная станция второго подъема</title>
@@ -228,16 +228,16 @@ function GetDitail(sid){
 	var rgb = '#00FF00'; // green
 	var marker;
 	
-	function RCW(deviceID, ReadReg,ReadBit,WriteReg,WriteBit,NewValue){
-		 $.ajax({
-                dataType: "json",
-				type: 'POST',
-                url: 'rcw.aspx',
-				data:'id='+deviceID +'&rreg='+ReadReg+'&rbit='+ReadBit+'&wreg=' +WriteReg + '&wbit=' +WriteBit+'&newval='+NewValue,
-                success: function(data){
-					map.closePopup();
-				}
-            });
+	function RCW(deviceID, QReg, Reg1, Bit1, Val1, Reg2, Bit2, Val2) {
+	    $.ajax({
+	        dataType: "json",
+	        type: 'POST',
+	        url: 'rcw.aspx',
+	        data: 'id=' + deviceID + '&qreg=' + QReg + '&reg1=' + Reg1 + '&bit1=' + Bit1 + '&val1=' + Val1 + '&reg2=' + Reg2 + '&bit2=' + Bit2 + '&val2=' + Val2,
+	        success: function (data) {
+	            map.closePopup();
+	        }
+	    });
 	}
 
 	/*
@@ -245,7 +245,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.1';
 	//rect.bindPopup('Насос 1');
-	rect.bindTooltip('Насос 1')
+	rect.bindTooltip('Насос 1');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -256,7 +256,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.2';
 	//rect.bindPopup('Насос 2');
-	rect.bindTooltip('Насос 2')
+	rect.bindTooltip('Насос 2');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -266,7 +266,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.3';
 	//rect.bindPopup('Насос 3');
-	rect.bindTooltip('Насос 3')
+	rect.bindTooltip('Насос 3');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -276,7 +276,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.4';
 	//rect.bindPopup('Насос 4');
-	rect.bindTooltip('Насос 4')
+	rect.bindTooltip('Насос 4');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -286,7 +286,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.5';
 	//rect.bindPopup('Насос 5');
-	rect.bindTooltip('Насос 5')
+	rect.bindTooltip('Насос 5');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -296,7 +296,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.6';
 	//rect.bindPopup('Насос 6');
-	rect.bindTooltip('Насос 6')
+	rect.bindTooltip('Насос 6');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -306,7 +306,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.7';
 	//rect.bindPopup('Насос 7');
-	rect.bindTooltip('Насос 7')
+	rect.bindTooltip('Насос 7');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -317,7 +317,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.8';
 	//rect.bindPopup('Насос 8');
-	rect.bindTooltip('Насос 8')
+	rect.bindTooltip('Насос 8');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -355,8 +355,9 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Задвижка 1.1M1</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,100,2,349,2,1);"></td></tr>'+
-	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,100,3,349,3,1);"></td></tr>'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,2,\'C349\',3,0,\'C349\',2,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,2,\'C349\',2,0,\'C349\',3,1);"></td></tr>'+
+	'<tr><td>Автомат: </td><td><img src="/images/auto.png" onclick="RCW(401,2,\'C349\',2,0,\'C349\',3,0);"></td></tr>'+
 	'</table><br/>' 
 	);
 	rect.bindTooltip('1.1M1');
@@ -371,13 +372,14 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Задвижка 1.1M2</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,100,4,349,4,1);"></td></tr>'+
-	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,100,5,349,5,1);"></td></tr>'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,2,\'C349\',5,0,\'C349\',4,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,2,\'C349\',4,0,\'C349\',5,1);"></td></tr>'+
+	'<tr><td>Автомат: </td><td><img src="/images/auto.png" onclick="RCW(401,2,\'C349\',4,0,\'C349\',5,0);"></td></tr>'+
 	'</table><br/>' 
 	);
 	rect.bindTooltip('1.1M2');
 	rect.on('contextmenu',function(event){ }); 
- rect.blink = blink;
+    rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
 	
@@ -400,8 +402,9 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Задвижка 1.2M1</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,250,1,350,1,1);"></td></tr>'+
-	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,250,0,350,0,1);"></td></tr>'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,2,\'C350\',0,0,\'C350\',1,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,2,\'C350\',1,0,\'C350\',0,1);"></td></tr>'+
+	'<tr><td>Автомат: </td><td><img src="/images/auto.png" onclick="RCW(401,2,\'C350\',1,0,\'C350\',0,0);"></td></tr>'+
 	'</table><br/>' 
 	);
 	rect.bindTooltip('1.2M1');
@@ -444,11 +447,12 @@ function GetDitail(sid){
 	bounds=FlipLL([[8.949566800221309,-25.947025732688957,0],[8.73057838894274,-26.037733702643077,0],[8.542528776997473,-26.18202924496765,0],[8.3982332346729,-26.37007885691292,0],[8.30752526471878,-26.589067268191485,0],[8.27658646538548,-26.82407078047018,0],[8.30752526471878,-27.059074292748875,0],[8.3982332346729,-27.27806270402744,0],[8.542528776997473,-27.46611231597271,0],[8.73057838894274,-27.610407858297283,0],[8.949566800221309,-27.701115828251403,0],[9.184570312500002,-27.732054627584702,0],[9.419573824778697,-27.701115828251403,0],[9.638562236057263,-27.610407858297283,0],[9.82661184800253,-27.46611231597271,0],[9.970907390327104,-27.27806270402744,0],[10.061615360281223,-27.059074292748875,0],[10.092554159614524,-26.82407078047018,0],[10.061615360281223,-26.589067268191485,0],[9.970907390327104,-26.37007885691292,0],[9.82661184800253,-26.18202924496765,0],[9.638562236057265,-26.037733702643077,0],[9.419573824778697,-25.947025732688957,0],[8.949566800221309,-25.947025732688957,0]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4.60';
-		rect.bindPopup(
+	rect.bindPopup(
 	'<h3>Задвижка 1.2M2</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,250,3,350,3,1);"></td></tr>'+
-	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,250,2,350,2,1);"></td></tr>'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(401,2,\'C350\',2,0,\'C350\',3,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(401,2,\'C350\',3,0,\'C350\',2,1);"></td></tr>'+
+	'<tr><td>Автомат: </td><td><img src="/images/auto.png" onclick="RCW(401,2,\'C350\',2,0,\'C350\',3,0);"></td></tr>'+
 	'</table><br/>' 
 	);
 	rect.bindTooltip('1.2M2');
@@ -590,7 +594,7 @@ function GetDitail(sid){
                        // //rect.bindPopup(sPopup);
                        // rect.marker.bindPopup(sPopup);
                         rect.on('contextmenu',function(event){ }); 
- rect.blink = blink;
+						rect.blink = blink;
 						}
 						if(v.INFO !=null){
 							var item=document.getElementById('v' +v.ID);

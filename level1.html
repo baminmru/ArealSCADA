@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <head>
 	<meta charset="UTF-8">
 	<title>Каменогорск. Главный экран</title>
@@ -192,17 +192,26 @@
 	var bounds;
 	var rgb = '#00FF00'; // green
 	var marker;
-
+	function RCW(deviceID, QReg, Reg1, Bit1, Val1, Reg2, Bit2, Val2) {
+	    $.ajax({
+	        dataType: "json",
+	        type: 'POST',
+	        url: 'rcw.aspx',
+	        data: 'id=' + deviceID + '&qreg=' + QReg + '&reg1=' + Reg1 + '&bit1=' + Bit1 + '&val1=' + Val1 + '&reg2=' + Reg2 + '&bit2=' + Bit2 + '&val2=' + Val2,
+	        success: function (data) {
+	            map.closePopup();
+	        }
+	    });
+	}
 	
 
 	bounds=FlipLL([[-8.677652072909613,23.819618311015745,0],[-9.024289715149061,23.676036298371134,0],[-9.321954206745518,23.447630300606136,0],[-9.550360204510516,23.14996580900968,0],[-9.69394221715513,22.80332816677023,0],[-9.742915367798119,22.43134015636062,0],[-9.69394221715513,22.05935214595101,0],[-9.550360204510516,21.71271450371156,0],[-9.321954206745518,21.415050012115103,0],[-9.024289715149061,21.186644014350104,0],[-8.677652072909613,21.043062001705493,0],[-8.305664062500002,20.9940888510625,0],[-7.933676052090391,21.043062001705493,0],[-7.587038409850942,21.186644014350104,0],[-7.289373918254485,21.415050012115103,0],[-7.060967920489487,21.71271450371156,0],[-6.917385907844875,22.05935214595101,0],[-6.868412757201884,22.43134015636062,0],[-6.917385907844874,22.80332816677023,0],[-7.060967920489487,23.14996580900968,0],[-7.289373918254484,23.447630300606136,0],[-7.5870384098509405,23.676036298371134,0],[-7.933676052090389,23.819618311015745,0],[-8.677652072909613,23.819618311015745,0]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3';
-	//rect.bindPopup('Насосная станция првого подъема');
-	rect.bindTooltip('Насосная станция првого подъема')
+	rect.bindTooltip('Насосная станция првого подъема');
 	rect.on('contextmenu',function(event){ window.location="level2.3.html";});
 	rect.on('dblclick',function(event){ window.location="level2.3.html";});
-	rect.on('contextmenu',function(event){ }); 
+
     rect.blink = blink;
 	stanki.push(rect);
 	rect.addTo(map);
@@ -212,8 +221,7 @@
 	bounds=FlipLL([[-16.347656250000004,14.43468021529728],[-16.303710937500004,16.46769474828897],[-2.7685546875000004,16.551961721972525],[-2.7685546875000004,13.068776734357694],[-14.765625000000002,12.940322128384627],[-14.677734375000002,14.604847155053898],[-16.347656250000004,14.43468021529728]]);
 	rect = L.polygon(bounds, { color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '4';
-	//rect.bindPopup('Насосная станция второго подъема');
-	rect.bindTooltip('Насосная станция второго подъема')
+	rect.bindTooltip('Насосная станция второго подъема');
 	rect.on('contextmenu',function(event){ window.location="level2.4.html";});
 	rect.on('dblclick',function(event){ window.location="level2.4.html";});
 	rect.blink = true;
@@ -225,11 +233,9 @@
 	bounds=FlipLL([[-25.576171875,0.4833927027896987],[-13.139648437500002,0.4833927027896987],[-13.095703125,-4.565473550710278],[-25.620117187500004,-4.609278084409823],[-25.576171875,0.4833927027896987]]);
 	rect = L.polygon(bounds, { color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '8';
-	//rect.bindPopup('Блок водоподготовки');
-	rect.bindTooltip('Блок водоподготовки')
+	rect.bindTooltip('Блок водоподготовки');
 	rect.on('contextmenu',function(event){ window.location="level2.8.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.html";});
-	rect.on('contextmenu',function(event){ }); 
 	rect.blink = blink;
 	stanki.push(rect);
 	rect.addTo(map);
@@ -238,8 +244,7 @@
 	bounds=FlipLL([[-25.664062500000004,-10.09867012060338],[-13.0078125,-10.09867012060338],[-12.919921875000002,-15.114552871944102],[-25.620117187500004,-15.156973713377667],[-25.664062500000004,-10.09867012060338]]);
 	rect = L.polygon(bounds, { color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '9';
-	//rect.bindPopup('Блок обработки промывной воды');
-	rect.bindTooltip("Блок обработки промывной воды")
+	rect.bindTooltip("Блок обработки промывной воды");
 	rect.on('contextmenu',function(event){ window.location="level2.9.html";});
 	rect.on('dblclick',function(event){ window.location="level2.9.html";});
 	rect.blink = true;

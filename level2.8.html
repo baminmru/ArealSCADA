@@ -218,16 +218,26 @@ function GetDitail(sid){
 	var rect;
 	rgb = '#eeeeee';
 	var marker;
-	
+		function RCW(deviceID, QReg, Reg1, Bit1, Val1, Reg2, Bit2, Val2) {
+	    $.ajax({
+	        dataType: "json",
+	        type: 'POST',
+	        url: 'rcw.aspx',
+	        data: 'id=' + deviceID + '&qreg=' + QReg + '&reg1=' + Reg1 + '&bit1=' + Bit1 + '&val1=' + Val1 + '&reg2=' + Reg2 + '&bit2=' + Bit2 + '&val2=' + Val2,
+	        success: function (data) {
+	            map.closePopup();
+	        }
+	    });
+	}
 
 	bounds=FlipLL([[-54.58007812500001,-23.160563309048314],[-54.58007812500001,27.839076094777816],[-21.357421875000004,27.839076094777816],[-21.357421875000004,-23.160563309048314],[-54.58007812500001,-23.160563309048314]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '8.1';
 	//rect.bindPopup('Подсистема 1');
-	rect.bindTooltip('Подсистема 1')
+	rect.bindTooltip('Подсистема 1');
 	rect.on('contextmenu',function(event){ window.location="level2.8.1.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.1.html";});
-	rect.on('contextmenu',function(event){ }); 
+
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -237,10 +247,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '8.2';
 	//rect.bindPopup('Подсистема 2');
-	rect.bindTooltip('Подсистема 2')
+	rect.bindTooltip('Подсистема 2');
 	rect.on('contextmenu',function(event){ window.location="level2.8.2.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.2.html";});
-	rect.on('contextmenu',function(event){ }); 
+	
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -249,10 +259,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '8.3';
 	//rect.bindPopup('Подсистема 3');
-	rect.bindTooltip('Подсистема 3')
+	rect.bindTooltip('Подсистема 3');
 	rect.on('contextmenu',function(event){ window.location="level2.8.3.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.3.html";});
-	rect.on('contextmenu',function(event){ }); 
+	
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -262,8 +272,8 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '8.4';
 	//rect.bindPopup('Подсистема 4');
-	rect.bindTooltip('Подсистема 4')
-	rect.on('contextmenu',function(event){ }); 
+	rect.bindTooltip('Подсистема 4');
+
  rect.blink = blink;
 	rect.on('contextmenu',function(event){ window.location="level2.8.4.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.4.html";});
@@ -274,10 +284,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '8.5';
 	//rect.bindPopup('Подсистема 5');
-	rect.bindTooltip('Подсистема 5')
+	rect.bindTooltip('Подсистема 5');
 	rect.on('contextmenu',function(event){ window.location="level2.8.5.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.5.html";});
-	rect.on('contextmenu',function(event){ }); 
+
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
@@ -286,10 +296,10 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '8.6';
 	//rect.bindPopup('Подсистема 6');
-	rect.bindTooltip('Подсистема 6')
+	rect.bindTooltip('Подсистема 6');
 	rect.on('contextmenu',function(event){ window.location="level2.8.6.html";});
 	rect.on('dblclick',function(event){ window.location="level2.8.6.html";});
-	rect.on('contextmenu',function(event){ }); 
+	 
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);

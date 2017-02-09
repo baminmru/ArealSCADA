@@ -31,7 +31,8 @@ Partial Class l281
             jj.msg = "Error"
             Response.Clear()
             Response.Write(JsonConvert.SerializeObject(jj))
-            Response.End()
+            Response.End() 
+ cm.Close()
             Exit Sub
         End If
 
@@ -272,14 +273,11 @@ Partial Class l281
         dr("INFO") = "-"
 
         If cm.IsBitSet(T202, 8) Then
-
             dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
-
         End If
 
         If cm.IsBitSet(T202, 9) Then
-
             dr("COLOR") = ""
             dr("INFO") = "Закрыта"
         End If
@@ -312,14 +310,7 @@ Partial Class l281
             Else
                 T100 = 0
             End If
-
-
-
-
-
         End If
-
-
 
         '1M1
         dr = dt2.NewRow
@@ -351,7 +342,6 @@ Partial Class l281
 
         If cm.IsBitSet(T100, 1) Then
             dr("COLOR") = "RED"
-            'dr("INFO") = "Авария"
             dr("BLINK") = "YES"
 			If cm.IsBitSet(T0, 0) Then
                 dr("INFO") = "Авария. Авт"
@@ -598,7 +588,8 @@ Partial Class l281
         jj.msg = "OK"
         Response.Clear()
         Response.Write(JsonConvert.SerializeObject(jj))
-        Response.End()
+        Response.End() 
+ cm.Close()
 
 
 

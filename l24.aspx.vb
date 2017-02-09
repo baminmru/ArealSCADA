@@ -32,7 +32,8 @@ Partial Class l24
             jj.msg = "Error"
             Response.Clear()
             Response.Write(JsonConvert.SerializeObject(jj))
-            Response.End()
+            Response.End() 
+ cm.Close()
             Exit Sub
         End If
         Dim dt2 As DataTable
@@ -41,8 +42,9 @@ Partial Class l24
         Dim v As UShort
         Dim T0 As UShort
         Dim T100 As UShort
-		Dim T201 As UShort
-        Dim T250 As UShort
+		Dim T202 As UShort
+		Dim T211 As UShort
+       
         
 
 
@@ -61,16 +63,15 @@ Partial Class l24
         
 
         If dt.Rows.Count > 0 Then
-            AddValue(dt2, dt, "Давление насоса 1М1", "T5", "260")
-            AddValue(dt2, dt, "Давление насоса 1М2", "T6", "261")
-            AddValue(dt2, dt, "Давление насоса 1М3", "P1", "262")
-            AddValue(dt2, dt, "Давление насоса 1М4", "P2", "263")
-            AddValue(dt2, dt, "Давление насоса 2М1", "P3", "264")
-            AddValue(dt2, dt, "Давление насоса 2М2", "P4", "265")
-			AddValue(dt2, dt, "Расход 1", "P5", "266")
-			AddValue(dt2, dt, "Расход 2", "P6", "267")
-            AddValue(dt2, dt, "Уровень в приямке", "V1", "268")
-            
+            AddValue(dt2, dt, "Давление насоса 1М1", "T5", "230")
+            AddValue(dt2, dt, "Давление насоса 1М2", "T6", "231")
+            AddValue(dt2, dt, "Давление насоса 1М3", "P1", "232")
+            AddValue(dt2, dt, "Давление насоса 1М4", "P2", "233")
+            AddValue(dt2, dt, "Давление насоса 2М1", "P3", "234")
+            AddValue(dt2, dt, "Давление насоса 2М2", "P4", "235")
+			AddValue(dt2, dt, "Расход 1", "P5", "236")
+			AddValue(dt2, dt, "Расход 2", "P6", "237")
+            AddValue(dt2, dt, "Уровень в приямке", "V1", "238")
         End If
 
 		''''''''''''''''''''''''''''''''''''''''''''
@@ -91,15 +92,17 @@ Partial Class l24
             End If
 
             If Not (TypeOf (dt.Rows(0)("T3")) Is DBNull) Then
-                T201 = CType(dt.Rows(0)("T3"), UShort)
+                T202 = CType(dt.Rows(0)("T3"), UShort)
             Else
-                T201 = 0
+                T202 = 0
             End If
 
+			
+			
             If Not (TypeOf (dt.Rows(0)("T4")) Is DBNull) Then
-                T250 = CType(dt.Rows(0)("T4"), UShort)
+                T211 = CType(dt.Rows(0)("T4"), UShort)
             Else
-                T250 = 0
+                T211 = 0
             End If
             
 
@@ -141,12 +144,12 @@ Partial Class l24
         dr("BLINK") = "NO"
 		dr("INFO") = "-"
 
-        If cm.IsBitSet(T201, 1) Then
+        If cm.IsBitSet(T202, 1) Then
 			dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
         End If
 		
-		If cm.IsBitSet(T201, 0) Then
+		If cm.IsBitSet(T202, 0) Then
 			dr("COLOR") = ""
             dr("INFO") = "Закрыта"
         End If
@@ -170,22 +173,22 @@ Partial Class l24
         dr("BLINK") = "NO"
 		dr("INFO") = "-"
 
-        If cm.IsBitSet(T201, 6) Then
+        If cm.IsBitSet(T202, 6) Then
 			dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
         End If
 		
-		If cm.IsBitSet(T201,7) Then
+		If cm.IsBitSet(T202,7) Then
 			dr("COLOR") = ""
             dr("INFO") = "Закрыта"
         End If
 		
-		If cm.IsBitSet(T201,4 ) Then
+		If cm.IsBitSet(T202,4 ) Then
 			dr("COLOR") = "YELLOW"
             dr("INFO") = "Перегрев"
         End If
 		
-		If cm.IsBitSet(T201, 5) Then
+		If cm.IsBitSet(T202, 5) Then
 			dr("COLOR") = "RED"
             dr("INFO") = "Авария"
         End If
@@ -200,22 +203,22 @@ Partial Class l24
         dr("BLINK") = "NO"
 		dr("INFO") = "-"
 
-        If cm.IsBitSet(T201, 10) Then
+        If cm.IsBitSet(T202, 10) Then
 			dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
         End If
 		
-		If cm.IsBitSet(T201,11) Then
+		If cm.IsBitSet(T202,11) Then
 			dr("COLOR") = ""
             dr("INFO") = "Закрыта"
         End If
 		
-		If cm.IsBitSet(T201,8 ) Then
+		If cm.IsBitSet(T202,8 ) Then
 			dr("COLOR") = "YELLOW"
             dr("INFO") = "Перегрев"
         End If
 		
-		If cm.IsBitSet(T201, 9) Then
+		If cm.IsBitSet(T202, 9) Then
 			dr("COLOR") = "RED"
             dr("INFO") = "Авария"
         End If
@@ -229,7 +232,8 @@ Partial Class l24
         jj.msg = "OK"
         Response.Clear()
         Response.Write(JsonConvert.SerializeObject(jj))
-        Response.End()
+        Response.End() 
+ cm.Close()
 
 
 

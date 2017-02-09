@@ -34,6 +34,7 @@ Public Class CMConnector
         xml = New XmlDocument
         'xml.Load(GetMyDir() + "\config.xml")
         xml.Load("C:\bami\projects\AREAL\WEB\APP_DATA\config.xml")
+		'xml.Load("D:\WEB\APP_DATA\config.xml")
 
         Dim node As XmlElement
         Dim nl As XmlNodeList
@@ -45,18 +46,19 @@ Public Class CMConnector
         builder.UserID = node.Attributes.GetNamedItem("UserID").Value
         builder.Password = node.Attributes.GetNamedItem("Password").Value
         LogPath = node.Attributes.GetNamedItem("logpath").Value
-     
+
 
 
         connection = New OracleConnection()
 
         connection.ConnectionString = builder.ConnectionString
+
         Try
             SyncLock connection
                 connection.Open()
             End SyncLock
             If connection.State <> ConnectionState.Open Then
-                Console.WriteLine("Ошибка соединения")
+                'Console.WriteLine("Ошибка соединения")
                 Return False
             End If
 
@@ -68,17 +70,20 @@ Public Class CMConnector
     End Function
 
     Public Sub QueryExec(ByVal s As String)
+		Dim cmd As OracleCommand
+        cmd = New OracleCommand
         Try
-            Dim cmd As OracleCommand
-            cmd = New OracleCommand
+           
             cmd.CommandType = CommandType.Text
             cmd.CommandText = s
             cmd.Connection = dbconnect()
 
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            Throw ex
+           
         End Try
+
+        cmd.Dispose()
 
     End Sub
 
@@ -96,15 +101,39 @@ Public Class CMConnector
             da.SelectCommand = cmd
             da.Fill(dt)
         Catch ex As Exception
-            Throw ex
+        
         End Try
-      
+        da.Dispose()
+        cmd.Dispose()
         Return dt
     End Function
 
     Public Sub New()
         Init()
     End Sub
+	
+	public sub Close()
+        If connection IsNot Nothing Then
+
+            Try
+                connection.Close()
+
+
+            Catch ex As Exception
+
+            End Try
+
+
+            Try
+
+                connection.Dispose()
+
+            Catch ex As Exception
+
+            End Try
+            connection = Nothing
+        End If
+    End sub
 
 
     Public Sub Log(ByVal msg As String)
@@ -137,85 +166,137 @@ Public Class CMConnector
 
     Public Sub GetCommonParams(dt2 As DataTable)
         Dim dr As DataRow
+		Dim dt As DataTable
 
         Dim ddd As DateTime
         ddd = DateTime.Now
-        ''''''''''''''''''
-        dr = dt2.NewRow
-        dr("ID") = "P1"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "Y:" & ddd.Year.ToString()
-        dt2.Rows.Add(dr)
-
-
-        dr = dt2.NewRow
-        dr("ID") = "P2"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "M:" & ddd.Month.ToString()
-        dt2.Rows.Add(dr)
-
-		dr = dt2.NewRow
-        dr("ID") = "P3"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "D:" & ddd.Day.ToString()
-        dt2.Rows.Add(dr)
-
-        dr = dt2.NewRow
-        dr("ID") = "P4"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "H:" & ddd.Hour.ToString()
-        dt2.Rows.Add(dr)
-
-
-
-        dr = dt2.NewRow
-        dr("ID") = "P5"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "Min:" & ddd.Minute.ToString()
-        dt2.Rows.Add(dr)
 		
-		dr = dt2.NewRow
-        dr("ID") = "P6"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "S:" & ddd.Second.ToString()
-        dt2.Rows.Add(dr)
+		
+		 dt =QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
 
-        dr = dt2.NewRow
-        dr("ID") = "P7"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = "mSEC:" & ddd.Millisecond.ToString()
-        dt2.Rows.Add(dr)
+		if dt.Rows.Count >0 then
 		
-	
-		
-		dr = dt2.NewRow
-        dr("ID") = "P8"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = ""
-        dt2.Rows.Add(dr)
-		
-		dr = dt2.NewRow
-        dr("ID") = "P9"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = ""
-        dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P1"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = "Сум. расх."
+			dt2.Rows.Add(dr)
 
-		dr = dt2.NewRow
-        dr("ID") = "P0"
-        dr("COLOR") = ""
-        dr("BLINK") = "NO"
-        dr("INFO") = ""
-        dt2.Rows.Add(dr)
-        '''''''''''''''''
+			dr = dt2.NewRow
+			dr("ID") = "P2"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = dt.Rows(0)("Q1").ToString() 
+			dt2.Rows.Add(dr)
+
+			dr = dt2.NewRow
+			dr("ID") = "P3"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = "м.куб/ч:"  
+			dt2.Rows.Add(dr)
+			
+			dr = dt2.NewRow
+			dr("ID") = "P4"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") =  dt.Rows(0)("Q2").ToString() 
+			dt2.Rows.Add(dr)
+
+			dr = dt2.NewRow
+			dr("ID") = "P5"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = "Расход" 
+			dt2.Rows.Add(dr)
+			
+			dr = dt2.NewRow
+			dr("ID") = "P6"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = dt.Rows(0)("M3").ToString() 
+			dt2.Rows.Add(dr)
+
+			dr = dt2.NewRow
+			dr("ID") = "P7"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = "м.куб/ч" 
+			dt2.Rows.Add(dr)
+			
+			dr = dt2.NewRow
+			dr("ID") = "P8"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = dt.Rows(0)("P1").ToString() 
+			dt2.Rows.Add(dr)
+		else
+			dr = dt2.NewRow
+			dr("ID") = "P1"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = "Нет данных"
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P2"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P3"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P4"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P5"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			
+			dr = dt2.NewRow
+			dr("ID") = "P6"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P7"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P8"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+		end if
+		
+			
+			dr = dt2.NewRow
+			dr("ID") = "P9"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+			dr = dt2.NewRow
+			dr("ID") = "P0"
+			dr("COLOR") = ""
+			dr("BLINK") = "NO"
+			dr("INFO") = ""
+			dt2.Rows.Add(dr)
+
     End Sub
 
 

@@ -214,14 +214,27 @@ function GetDitail(sid){
 	var rgb = '#00FF00'; // green
 	var marker;
 
+	function RCW(deviceID, QReg,Reg1,Bit1,Val1,Reg2,Bit2,Val2){
+		 $.ajax({
+                dataType: "json",
+				type: 'POST',
+                url: 'rcw.aspx',
+				data:'id='+deviceID +'&qreg='+QReg+'&reg1='+Reg1+'&bit1='+Bit1+'&val1='+Val1+'&reg2=' +Reg2 + '&bit2=' +Bit2+'&val2='+Val2,
+                success: function(data){
+					map.closePopup();
+				}
+            });
+	}
+	
+	
 	
 	bounds=FlipLL([[-5.48906839313991,-6.799593593204482,0],[-6.345212590478235,-7.154220131089044,0],[-7.080400279811553,-7.71834948634439,0],[-7.6445296350669,-8.453537175677708,0],[-7.999156172951462,-9.309681373016033,0],[-8.12011268095647,-10.228437266155941,0],[-7.999156172951462,-11.14719315929585,0],[-7.644529635066901,-12.003337356634177,0],[-7.0804002798115535,-12.738525045967496,0],[-6.345212590478235,-13.302654401222842,0],[-5.489068393139909,-13.657280939107405,0],[-4.5703125,-13.778237447112412,0],[-3.651556606860091,-13.657280939107403,0],[-2.7954124095217647,-13.302654401222842,0],[-2.0602247201884465,-12.738525045967494,0],[-1.496095364933101,-12.003337356634177,0],[-1.1414688270485396,-11.14719315929585,0],[-1.0205123190435321,-10.228437266155943,0],[-1.1414688270485391,-9.309681373016035,0],[-1.4960953649331001,-8.453537175677711,0],[-2.0602247201884456,-7.718349486344393,0],[-2.795412409521762,-7.154220131089046,0],[-3.6515566068600864,-6.7995935932044835,0],[-5.48906839313991,-6.799593593204482,0]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.1';
 	//rect.bindPopup('Насос 1');
-	rect.bindTooltip('Насос 1')
+	rect.bindTooltip('Насос 1');
 	rect.on('contextmenu',function(event){ }); 
- rect.blink = blink;
+    rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
 	 
@@ -230,7 +243,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.2';
 	//rect.bindPopup('Насос 2');
-	rect.bindTooltip('Насос 2')
+	rect.bindTooltip('Насос 2');
 	rect.on('contextmenu',function(event){ }); 
 	rect.blink = blink;
 	rect.addTo(map);
@@ -242,7 +255,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.11';
 	//rect.bindPopup('Напор мотор 1');
-	rect.bindTooltip('Напор мотор 1')
+	rect.bindTooltip('Напор мотор 1');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -253,7 +266,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.12';
 	//rect.bindPopup('Напор мотор 2');
-	rect.bindTooltip('Напор мотор 2')
+	rect.bindTooltip('Напор мотор 2');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -261,17 +274,6 @@ function GetDitail(sid){
 	*/
 	
 	
-	function RCW(deviceID, ReadReg,ReadBit,WriteReg,WriteBit,NewValue){
-		 $.ajax({
-                dataType: "json",
-				type: 'POST',
-                url: 'rcw.aspx',
-				data:'id='+deviceID +'&rreg='+ReadReg+'&rbit='+ReadBit+'&wreg=' +WriteReg + '&wbit=' +WriteBit+'&newval='+NewValue,
-                success: function(data){
-					map.closePopup();
-				}
-            });
-	}
 	
 	
 	bounds=FlipLL([[-12.919442536273774,31.326325223421406,0],[-13.328500984451471,31.156887666382914,0],[-13.679767437290833,30.887351437147633,0],[-13.949303666526113,30.536084984308275,0],[-14.118741223564607,30.127026536130575,0],[-14.176533218902945,29.6880527498568,0],[-14.118741223564607,29.249078963583028,0],[-13.949303666526113,28.840020515405328,0],[-13.679767437290833,28.48875406256597,0],[-13.328500984451471,28.21921783333069,0],[-12.919442536273774,28.049780276292196,0],[-12.48046875,27.991988280953855,0],[-12.041494963726224,28.049780276292196,0],[-11.632436515548527,28.21921783333069,0],[-11.281170062709167,28.48875406256597,0],[-11.011633833473887,28.840020515405328,0],[-10.842196276435393,29.249078963583028,0],[-10.784404281097055,29.6880527498568,0],[-10.842196276435393,30.127026536130575,0],[-11.011633833473887,30.53608498430827,0],[-11.281170062709165,30.887351437147633,0],[-11.632436515548525,31.15688766638291,0],[-12.041494963726223,31.326325223421406,0],[-12.919442536273774,31.326325223421406,0]]);
@@ -280,11 +282,12 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Задвижка 1.1M1</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(389,100,2,349,2,1);"></td></tr>'+
-	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(389,100,3,349,3,1);"></td></tr>'+
+	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(389,2,349,3,0,349,2,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(389,2,349,3,1,349,2,0);"></td></tr>'+
+	'<tr><td>Автомат: </td><td><img src="/images/auto.png" onclick="RCW(389,2,349,3,0,349,2,0);"></td></tr>'+
 	'</table><br/>' 
 	);
-	rect.bindTooltip('Управление 1.1M1')
+	rect.bindTooltip('Управление 1.1M1');
 	rect.on('contextmenu',function(event){ }); 
     rect.blink = blink;
 	rect.addTo(map);
@@ -297,11 +300,12 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Задвижка 1.1M2</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(389,100,4,349,4,1);"></td></tr>'+
-	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(389,100,5,349,5,0);"></td></tr>'+
+    '<tr><td>Открыть: </td><td><img src="/images/start.png"  onclick="RCW(389,2,349,5,0,349,4,1);"></td></tr>'+
+	'<tr><td>Закрыть: </td><td><img src="/images/stop.png" onclick="RCW(389,2,349,5,1,349,4,0);"></td></tr>'+
+	'<tr><td>Автомат: </td><td><img src="/images/auto.png" onclick="RCW(389,2,349,5,0,349,4,0);"></td></tr>'+
 	'</table><br/>' 
 	);
-	rect.bindTooltip('Управление 1.1M2')
+	rect.bindTooltip('Управление 1.1M2');
 	rect.on('contextmenu',function(event){ }); 
     rect.blink = blink;
 	rect.addTo(map);
@@ -313,10 +317,11 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Насос 1М1</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Пуск: </td><td><img src="/images/start.png"  onclick="RCW(389,100,6,349,6,1);"></td></tr>'+
+	'<tr><td>Пуск: </td><td><img src="/images/start.png"  onclick="RCW(389,1,\'C349\',6,1,0,0,0);"></td></tr>'+
+	'<tr><td>Стоп: </td><td><img src="/images/stop.png"  onclick="RCW(389,1,\'C349\',6,0,0,0,0);"></td></tr>'+
 	'</table><br/>' 
 	);
-	rect.bindTooltip('Управление 1M1')
+	rect.bindTooltip('Управление 1M1');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -328,21 +333,22 @@ function GetDitail(sid){
 	rect.bindPopup(
 	'<h3>Насос 1М2</h3><hr/>'+
 	'<table class ="ctrl-popup" >'+
-	'<tr><td>Пуск: </td><td><img src="/images/start.png"  onclick="RCW(389,100,7,349,7,1);"></td></tr>'+
+	'<tr><td>Пуск: </td><td><img src="/images/start.png"  onclick="RCW(389,1,\'C349\',7,1,0,0,0);"></td></tr>'+
+	'<tr><td>Стоп: </td><td><img src="/images/stop.png"  onclick="RCW(389,1,\'C349\',7,0,0,0,0);"></td></tr>'+
 	'</table><br/>' 
 	);
-	rect.bindTooltip('Управление 1M2')
+	rect.bindTooltip('Управление 1M2');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
 	
-	/*
+	
 	bounds=FlipLL([[33.965689961446216,-9.780751779969343,0],[33.101967694483506,-10.138517257068933,0],[32.36027256923684,-10.707639943523134,0],[31.79114988278264,-11.449335068769795,0],[31.43338440568305,-12.313057335732509,0],[31.311357263966997,-13.239945499286298,0],[31.43338440568305,-14.166833662840089,0],[31.79114988278264,-15.030555929802803,0],[32.36027256923684,-15.772251055049466,0],[33.101967694483506,-16.341373741503666,0],[33.965689961446216,-16.699139218603257,0],[34.89257812500001,-16.82116636031931,0],[35.8194662885538,-16.699139218603257,0],[36.683188555516516,-16.341373741503666,0],[37.42488368076317,-15.772251055049464,0],[37.994006367217374,-15.030555929802803,0],[38.351771844316964,-14.16683366284009,0],[38.47379898603302,-13.2399454992863,0],[38.351771844316964,-12.31305733573251,0],[37.994006367217374,-11.449335068769798,0],[37.42488368076317,-10.707639943523136,0],[36.683188555516516,-10.138517257068937,0],[35.819466288553805,-9.780751779969345,0],[33.965689961446216,-9.780751779969343,0]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.51';
 	//rect.bindPopup('Уровень 1');
-	rect.bindTooltip('Уровень 1')
+	rect.bindTooltip('Уровень 1');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -352,7 +358,7 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.52';
 	//rect.bindPopup('Уровень 2');
-	rect.bindTooltip('Уровень 2')
+	rect.bindTooltip('Уровень 2');
 	rect.on('contextmenu',function(event){ }); 
  rect.blink = blink;
 	rect.addTo(map);
@@ -363,13 +369,13 @@ function GetDitail(sid){
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
 	rect.tag = '3.53';
 	//rect.bindPopup('Уровень 3');
-	rect.bindTooltip('Уровень 3')
+	rect.bindTooltip('Уровень 3');
 	rect.on('contextmenu',function(event){ }); 
- rect.blink = blink;
+    rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
 	
-	*/
+	
 	
 	bounds=FlipLL([[-14.23828125,20.797201434307],[-14.23828125,22.268764039073968],[-10.810546875000002,22.268764039073968],[-10.810546875000002,20.797201434307],[-14.23828125,20.797201434307]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
