@@ -111,15 +111,6 @@ Partial Class l286
         End If
 
 
-
-        '    <li><a href = "#" onclick='GetDitail("86.21");'>Задвижка 3M  : <span id="v86.21">?</span></a></li>
-        '<li><a href = "#" onclick='GetDitail("86.22");'>Задвижка 2M1 : <span id="v86.22">?</span></a></li>
-        '<li><a href = "#" onclick='GetDitail("86.23");'>Задвижка 2M2 : <span id="v86.23">?</span></a></li>
-        '<li><a href = "#" onclick='GetDitail("86.24");'>Задвижка 4M  : <span id="v86.24">?</span></a></li>
-        '<li><a href = "#" onclick='GetDitail("86.25");'>Задвижка 2M3 : <span id="v86.25">?</span></a></li>
-        '<li><a href = "#" onclick='GetDitail("86.26");'>Задвижка 2M4 : <span id="v86.26">?</span></a></li>
-
-
         '2m1
         dr = dt2.NewRow
         dr("ID") = "86.22"
@@ -226,6 +217,9 @@ Partial Class l286
 
 
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_8"
+		T0=0
+		T100=0
+		
 
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=396 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
@@ -240,11 +234,6 @@ Partial Class l286
             Else
                 T100 = 0
             End If
-
-
-
-
-
         End If
 
 

@@ -44,9 +44,25 @@ Partial Class l28
         dt2 = cm.GetOutputTab
         cm.GetCommonParams(dt2)
 
+		
+        Dim dr As DataRow
+        Dim T0 As UShort
+        Dim T202 As UShort
+		Dim T203 As UShort
+        Dim T211 As UShort
+		Dim T212 As UShort
+        Dim T100 As UShort
+		
+		
 		'''''''''''''''''''''''''''''
 		
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+
+		dr = dt2.NewRow
+        dr("ID") = "8.7"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
 
         If dt.Rows.Count > 0 Then
             AddValue(dt2, dt, "Расход на трубопроводе В1.ЭН", "V1", "206")
@@ -79,7 +95,13 @@ Partial Class l28
             AddValue(dt2, dt, "Давление после насоса 1М6", "G2", "231")
             AddValue(dt2, dt, "Давление после воздуходувки ВМ1", "G3", "232")
             AddValue(dt2, dt, "Давление после воздуходувки ВМ2", "G4", "233")
+		else
+			dr("COLOR") = "YELLOW"
+			dr("INFO") = " Нет данных" 
         End If
+		
+		dt2.Rows.Add(dr)
+		
 
 		''''''''''''''''''''''''''''''''''''''''''''
 		
@@ -87,13 +109,6 @@ Partial Class l28
 
 
 
-        Dim dr As DataRow
-        Dim T0 As UShort
-        Dim T202 As UShort
-		Dim T203 As UShort
-        Dim T211 As UShort
-		Dim T212 As UShort
-        Dim T100 As UShort
 
         dr = dt2.NewRow
         dr("ID") = "8.1"

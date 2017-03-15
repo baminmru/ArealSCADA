@@ -54,14 +54,14 @@
 	
 </head>
 <body oncontextmenu="return false">
-	<div style="position:absolute; top:0px; left:0px; height:30px; width:1000px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	<div style="position:absolute; width:1000px; bottom:0px; top:50px;" id="map"></div>
+	<div style="position:absolute; top:0px; left:0px; height:30px; width:1500px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	<div style="position:absolute; width:1500px; bottom:0px; top:50px;" id="map"></div>
 	<div style="position:absolute; width:990px; bottom:0px; top:0px; left:0px; background: #aeaeae; padding:10px; display:none; z-index:1200; "  id="detail">
 		<h1><a href="#" onclick=' $("#detail").hide(); return false;' ><img src="images/close.png" alt="Закрыть" border="0" width="30px" height="30px" /></a> Детальная информация</h1>
 		<hr>
 		<div id="detail_info">
 		</div>
 	</div>
-	<div style="position:absolute; top:0px; left:1008px; right:0px; bottom:0px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief">
+	<div style="position:absolute; top:0px; left:1508px; right:0px; bottom:0px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief">
 <h1>
 	<a href="level1.html"><img src="images\home.png" alt="Главный экран" width="50px"; height="50px"; /></a>
 	<img src="/images/areal.logo.png" border="0"; width="250px"; height="50px";  align="right" />
@@ -73,26 +73,33 @@
 	<li><a href="level2.9.3.html" >Посистема 3</a><span id="v9.3.1"></span></li>
 	<li><a href="level2.9.4.html" >Посистема 4</a><span id="v9.4"></span></li>
 	<li><a href="level2.9.5.html" >Посистема 5</a><span id="v9.5"></span></li>
-	<li><a href="level2.9.6.html" >Посистема 6</a><span id="v9.6"></span></li>
+	<!--<li><a href="level2.9.6.html" >Посистема 6</a><span id="v9.6"></span></li> -->
+	<li><a href="#" >ШМ</a><span id="v9.7"></span></li>
 	</ul>
 	<hr/>
 	<span id="v202"></span><br/>
 	<span id="v203"></span><br/>
 	<span id="v204"></span><br/>
 	<span id="v205"></span><br/>
-	<span id="v206"></span><br/>
-	<span id="v207"></span><br/>
+	
 	<span id="v208"></span><br/>
 	<span id="v209"></span><br/>
 	<span id="v210"></span><br/>
 	<span id="v211"></span><br/>
-	<span id="v212"></span><br/>
-	<span id="v213"></span><br/>
+	
 	<span id="v214"></span><br/>
 	<span id="v215"></span><br/>
 	<span id="v216"></span><br/>
 	<span id="v217"></span><br/>
 	<span id="v218"></span><br/>
+	
+	<span id="v220"></span><br/>
+	<span id="v221"></span><br/>
+	
+	<span id="v223"></span><br/>
+	<span id="v224"></span><br/>
+	
+	
 	</div>
 <script type='text/javascript'>
 function GetDitail(sid){
@@ -135,7 +142,8 @@ function GetDitail(sid){
 	  }]
 	}).addTo( map );
 	
-	/*var  drawnItems = L.featureGroup().addTo(map);
+	/*
+	var  drawnItems = L.featureGroup().addTo(map);
 	
 	
     map.addControl(new L.Control.Draw({
@@ -257,7 +265,7 @@ function GetDitail(sid){
 	rect.addTo(map);
 	stanki.push(rect);
 	
-	bounds=FlipLL([[-21.796875000000004,4.302591077119676],[-21.796875000000004,17.22475820662464],[9.755859375000002,17.22475820662464],[9.755859375000002,4.302591077119676],[-21.796875000000004,4.302591077119676]]);
+	bounds=FlipLL([[-21.796875000000004,4.302591077119676],[-21.796875000000004,17.22475820662464],[17.755859375000002,17.22475820662464],[17.755859375000002,4.302591077119676],[-21.796875000000004,4.302591077119676]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.3.1';
 	//rect.bindPopup('Подсистема 3');
@@ -305,7 +313,7 @@ function GetDitail(sid){
 	rect.addTo(map);
 	stanki.push(rect);
 	
-	bounds=FlipLL([[31.464843750000004,-18.646245142670608],[31.464843750000004,-3.513421045640032],[47.81250000000001,-3.513421045640032],[47.81250000000001,-18.646245142670608],[31.464843750000004,-18.646245142670608]]);
+	/*bounds=FlipLL([[31.464843750000004,-18.646245142670608],[31.464843750000004,-3.513421045640032],[47.81250000000001,-3.513421045640032],[47.81250000000001,-18.646245142670608],[31.464843750000004,-18.646245142670608]]);
 	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
 	rect.tag = '9.6';
 	//rect.bindPopup('Подсистема 6');
@@ -316,7 +324,18 @@ function GetDitail(sid){
  rect.blink = blink;
 	rect.addTo(map);
 	stanki.push(rect);
+	*/
 	
+	bounds=FlipLL([[32.95898437500001,-22.59372606392931],[32.95898437500001,-16.383391123608387],[51.94335937500001,-16.383391123608387],[51.94335937500001,-22.59372606392931],[32.95898437500001,-22.59372606392931]]);
+	rect = L.polygon(bounds, {  color: rgb, opacity: 1.0, fillOpacity: 0.1, weight: 2 });
+	rect.tag = '9.7';
+	rect.bindTooltip('Шкаф мониторинга');
+	rect.on('contextmenu',function(event){});
+	rect.on('dblclick',function(event){ });
+	
+ rect.blink = blink;
+	rect.addTo(map);
+	stanki.push(rect)
 	
 	function FlipLL(b) {
 		var fb;

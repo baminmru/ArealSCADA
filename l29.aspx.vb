@@ -49,7 +49,12 @@ Partial Class l29
             Exit Sub
         End If
 
-
+		Dim dr As DataRow
+        Dim v As UShort
+   	    Dim T0 As UShort
+		Dim T100 As UShort
+		Dim T201 As UShort
+        Dim T211 As UShort
         Dim dt2 As DataTable
         dt2 = cm.GetOutputTab
         cm.GetCommonParams(dt2)
@@ -57,8 +62,13 @@ Partial Class l29
 		'''''''''''''''''''''''''''''''''''''''''
 		
 		
-        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
-
+        dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=404 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+		dr = dt2.NewRow
+        dr("ID") = "9.7"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+		
         If dt.Rows.Count > 0 Then
 		   AddValue(dt2, dt, "Давление после насоса 9М1", "T3", "202")
 		   AddValue(dt2, dt, "Давление после насоса 9М2", "T4", "203")
@@ -66,33 +76,33 @@ Partial Class l29
 	       AddValue(dt2, dt, "Давление после насоса 9М4", "T6", "205")
 		
 		
-           AddValue(dt2, dt, "Уровень в резервуаре 1.1", "V1", "206")
-            AddValue(dt2, dt, "Уровень в резервуаре 1.2", "V2", "207")
-            AddValue(dt2, dt, "Расход на трубопроводе К3.2", "V3", "208")
-            AddValue(dt2, dt, "Расход на трубопроводе К3.3", "V4", "209")
-            AddValue(dt2, dt, "Давление после воздуходувки 7М1", "V5", "210")
-            AddValue(dt2, dt, "Давление после воздуходувки 7М2", "V6", "211")
-
-           AddValue(dt2, dt, " Уровень в резервуаре 3.1", "M1", "212")
-            AddValue(dt2, dt, " Уровень в резервуаре 3.2", "M2", "213")
-            AddValue(dt2, dt, "Давление после насосов 9М1", "M3", "214")
-            AddValue(dt2, dt, "Давление после насосов 9М2", "M4", "215")
-            AddValue(dt2, dt, "Уровень в резервуаре 9.4.1", "M5", "216")
-            AddValue(dt2, dt, "Уровень в резервуаре 9.4.2", "M6", "217")
-            AddValue(dt2, dt, "Расход на трубопроводе Ш1", "P1", "218")
-       
+			AddValue(dt2, dt, "Расход на трубопроводе К3.2","V1","208")
+			AddValue(dt2, dt, "Расход на трубопроводе К3.3","V2","209")
+			AddValue(dt2, dt, "Уровень в резервуаре 1.2","V3","210")
+			AddValue(dt2, dt, "Уровень в резервуаре 1.1","V4","211")
+			
+			
+			AddValue(dt2, dt, "Давление после насосов 9М1", "V5", "214")
+            AddValue(dt2, dt, "Давление после насосов 9М2", "V6", "215")
+			AddValue(dt2, dt, "Уровень в резервуаре 3.1","M1","216")
+			AddValue(dt2, dt, "Уровень в резервуаре 3.2","M2","217")
+			AddValue(dt2, dt, "Расход на трубопроводе Ш1","M3","218")
+			
+			AddValue(dt2, dt, "Уровень в резервуаре 9.4.1", "M4", "220")
+            AddValue(dt2, dt, "Уровень в резервуаре 9.4.2", "M5", "221")
+			AddValue(dt2, dt, "Давление после воздуходувки 7М1", "M6", "223")
+            AddValue(dt2, dt, "Давление после воздуходувки 7М2", "P1", "224")
+        else
+	    dr("COLOR") = "YELLOW"
+        dr("INFO") = " Нет данных"
         End If
+		dt2.Rows.Add(dr)
 
 		'''''''''''''''''''''''''''''''''''''''
 		
 		
 
-		Dim dr As DataRow
-        Dim v As UShort
-   	    Dim T0 As UShort
-		Dim T100 As UShort
-		Dim T201 As UShort
-        Dim T211 As UShort
+	
 		
 		''''''''''''''''' подсистема 1
 		

@@ -154,58 +154,58 @@ Partial Class l23
         dr("ID") = "3.50"
         dr("COLOR") = ""
         dr("BLINK") = "NO"
-		dr("INFO") = "0"
+		dr("INFO") = ""
 		
         If cm.IsBitSet(T0, 8) Then
-            dr("INFO") = "1"
+		
+            dr("INFO") += "1"
         End If
 
         If cm.IsBitSet(T0, 9) Then
-            dr("INFO") = "2"
+			if dr("INFO" ) <>"" then dr("INFO")+ = ", "
+            dr("INFO") += "2"
         End If
         If cm.IsBitSet(T0, 10) Then
-            dr("INFO") = "3"
+			if dr("INFO" ) <>"" then dr("INFO") += ", "
+            dr("INFO") += "3"
         
         End If
 		If cm.IsBitSet(T0, 11) Then
-            dr("INFO") = "4"
+			if dr("INFO" ) <>"" then dr("INFO") += ", "
+            dr("INFO") += "4"
         End If
 		If cm.IsBitSet(T201, 0) Then
-            dr("INFO") = "5"
+			if dr("INFO" ) <>"" then dr("INFO") +=", "
+            dr("INFO") += "5"
         End If
 
         dt2.Rows.Add(dr)
 
 
-		 dr = dt2.NewRow
+		dr = dt2.NewRow
         dr("ID") = "3.51"
         dr("COLOR") = ""
         dr("BLINK") = "NO"
-		dr("INFO") = "0"
+		dr("INFO") = "-"
+		
 		
         If cm.IsBitSet(T0, 8) Then
-            dr("INFO") = "1"
+            dr("INFO") = "min"
 			dr("COLOR") = "GREEN"
         End If
-
-        If cm.IsBitSet(T0, 9) Then
-            dr("INFO") = "2"
-			dr("COLOR") = "GREEN"
-        End If
-       
-
-        dt2.Rows.Add(dr)
+		
+		dt2.Rows.Add(dr)
 		
 		
-		 dr = dt2.NewRow
+		dr = dt2.NewRow
         dr("ID") = "3.52"
         dr("COLOR") = ""
         dr("BLINK") = "NO"
-		dr("INFO") = "0"
+		dr("INFO") = "-"
 		
      
-        If cm.IsBitSet(T0, 10) Then
-            dr("INFO") = "3"
+        If cm.IsBitSet(T201, 0) Then
+            dr("INFO") = "ok"
         	dr("COLOR") = "GREEN"
         End If
 		
@@ -213,18 +213,66 @@ Partial Class l23
         dt2.Rows.Add(dr)
 
 		
- 	    dr = dt2.NewRow
+		
+		dr = dt2.NewRow
         dr("ID") = "3.53"
         dr("COLOR") = ""
         dr("BLINK") = "NO"
-		dr("INFO") = "0"
+		dr("INFO") = "-"
+		
+	    If cm.IsBitSet(T0, 10) Then
+            dr("INFO") = "перелив"
+			dr("COLOR") = "YELLOW"
+        End If
+		
+		dt2.Rows.Add(dr)
+
+		
+		
+		
+
+		
+		
+ 	    dr = dt2.NewRow
+        dr("ID") = "3.54"
+        dr("COLOR") = ""
+        dr("BLINK") = "NO"
+		dr("INFO") = "-"
     
-		If cm.IsBitSet(T0, 11) Then
-            dr("INFO") = "4"
+		If cm.IsBitSet(T0, 9) Then
+            dr("INFO") = "min"
 			dr("COLOR") = "GREEN"
         End If
         dt2.Rows.Add(dr)
 		
+		
+		dr = dt2.NewRow
+        dr("ID") = "3.55"
+        dr("COLOR") = ""
+        dr("BLINK") = "NO"
+		dr("INFO") = "-"
+		
+     
+        If cm.IsBitSet(T201, 0) Then
+            dr("INFO") = "ok"
+        	dr("COLOR") = "GREEN"
+        End If
+		
+
+        dt2.Rows.Add(dr)
+		
+		
+		dr = dt2.NewRow
+        dr("ID") = "3.56"
+        dr("COLOR") = ""
+        dr("BLINK") = "NO"
+		dr("INFO") = "-"
+    
+		If  cm.IsBitSet(T0, 11) Then
+            dr("INFO") = "перелив"
+			dr("COLOR") = "YELLOW"
+        End If
+        dt2.Rows.Add(dr)
 
         dr = dt2.NewRow
         dr("ID") = "3.71"

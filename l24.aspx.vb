@@ -60,8 +60,9 @@ Partial Class l24
 		
 		'''''''''''''''''''''''''''''
 		
-        
-
+ 
+		
+		
         If dt.Rows.Count > 0 Then
             AddValue(dt2, dt, "Давление насоса 1М1", "T5", "230")
             AddValue(dt2, dt, "Давление насоса 1М2", "T6", "231")
@@ -76,8 +77,7 @@ Partial Class l24
 
 		''''''''''''''''''''''''''''''''''''''''''''
 		
-
-
+   
         If dt.Rows.Count > 0 Then
             If Not (TypeOf (dt.Rows(0)("T1")) Is DBNull) Then
                 T0 = CType(dt.Rows(0)("T1"), UShort)
@@ -142,17 +142,17 @@ Partial Class l24
         dr("ID") = "4.54"
         dr("COLOR") = ""
         dr("BLINK") = "NO"
-		dr("INFO") = "-"
+		dr("INFO") = "Закрыта"
 
         If cm.IsBitSet(T202, 1) Then
 			dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
         End If
 		
-		If cm.IsBitSet(T202, 0) Then
-			dr("COLOR") = ""
-            dr("INFO") = "Закрыта"
-        End If
+		'If cm.IsBitSet(T202, 0) Then
+	 '		dr("COLOR") = ""
+     '        dr("INFO") = "Закрыта"
+     '   End If
 		
 		If cm.IsBitSet(T0, 10) Then
 			dr("COLOR") = "YELLOW"
@@ -173,22 +173,22 @@ Partial Class l24
         dr("BLINK") = "NO"
 		dr("INFO") = "-"
 
-        If cm.IsBitSet(T202, 6) Then
+        If cm.IsBitSet(T202, 5) Then
 			dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
         End If
 		
-		If cm.IsBitSet(T202,7) Then
+		If cm.IsBitSet(T202,6) Then
 			dr("COLOR") = ""
             dr("INFO") = "Закрыта"
         End If
 		
-		If cm.IsBitSet(T202,4 ) Then
-			dr("COLOR") = "YELLOW"
-            dr("INFO") = "Перегрев"
-        End If
+		'If cm.IsBitSet(T202,4 ) Then
+		'	dr("COLOR") = "YELLOW"
+        '    dr("INFO") = "Перегрев"
+        'End If
 		
-		If cm.IsBitSet(T202, 5) Then
+		If cm.IsBitSet(T202, 4) Then
 			dr("COLOR") = "RED"
             dr("INFO") = "Авария"
         End If
@@ -203,12 +203,12 @@ Partial Class l24
         dr("BLINK") = "NO"
 		dr("INFO") = "-"
 
-        If cm.IsBitSet(T202, 10) Then
+        If cm.IsBitSet(T202, 9) Then
 			dr("COLOR") = "GREEN"
             dr("INFO") = "Открыта"
         End If
 		
-		If cm.IsBitSet(T202,11) Then
+		If cm.IsBitSet(T202,10) Then
 			dr("COLOR") = ""
             dr("INFO") = "Закрыта"
         End If
@@ -218,10 +218,10 @@ Partial Class l24
             dr("INFO") = "Перегрев"
         End If
 		
-		If cm.IsBitSet(T202, 9) Then
-			dr("COLOR") = "RED"
-            dr("INFO") = "Авария"
-        End If
+		'If cm.IsBitSet(T202, 9) Then
+		'	dr("COLOR") = "RED"
+        '    dr("INFO") = "Авария"
+        'End If
 
         dt2.Rows.Add(dr)
 

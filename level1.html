@@ -52,8 +52,8 @@
 	
 </head>
 <body oncontextmenu="return false">
-	<div style="position:absolute; top:0px; left:0px; height:30px; width:1000px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	<div style="position:absolute; width:1000px; bottom:0px; top:50px;" id="map"></div>
-	<div style="position:absolute; top:0px; left:1008px; right:0px; bottom:0px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief">
+	<div style="position:absolute; top:0px; left:0px; height:30px; width:1500px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief"><table border="0"><tr>	<td width="90px" ><span id="vP1">?</span></td>	<td width="90px" ><span id="vP2">?</span></td>	<td width="90px" ><span id="vP3">?</span></td>	<td width="90px" ><span id="vP4">?</span></td>	<td width="90px" ><span id="vP5">?</span></td>	<td width="90px" ><span id="vP6">?</span></td>	<td width="90px" ><span id="vP7">?</span></td>	<td width="90px" ><span id="vP8">?</span></td>	<td width="90px" ><span id="vP9">?</span></td>	<td width="90px" ><span id="vP0">?</span></td>	</tr></table>	</div>	<div style="position:absolute; width:1500px; bottom:0px; top:50px;" id="map"></div>
+	<div style="position:absolute; top:0px; left:1508px; right:0px; bottom:0px; background: #bfbfbf; padding:10px; overflow-y: scroll;" id="brief">
 	<img src="/images/areal.logo.png" border="0"; width="250px"; height="50px";  align="right" />
 	
 	<h2>Главный экран</h2>
@@ -73,7 +73,7 @@
 	<li><a href="level2.9.html">9. Блок обработки промывной воды</a></li>
 	<li>10 Накопительная емкость канализации</li>
 	<li>11 Склад реагентов</li>
-	<li>12 Резерв промывной воды</li>
+	<li><a href="level2.12.html">12 Резерв промывной воды</a></li>
 	<li>13 Хранилище пропан-бутана</li>
 	
 	
@@ -133,9 +133,9 @@
             }
         }
     }));
+	
+	
 	*/
-	
-	
 
 	var rgb = '#00FF00'; // green
 	var bounds;
@@ -253,6 +253,16 @@
 	rect.addTo(map);
 	
 
+	bounds=FlipLL([[-35.50781250000001,-10.31491928581316],[-35.50781250000001,-8.146242825034385],[-31.289062500000004,-8.146242825034385],[-31.289062500000004,-10.31491928581316],[-35.50781250000001,-10.31491928581316]]);
+	rect = L.polygon(bounds, { color: rgb, opacity: 1.0, fillOpacity: 0.5, weight: 2 });
+	rect.tag = '12';
+	rect.bindTooltip("Резерв промывной воды");
+	rect.on('contextmenu',function(event){ window.location="level2.12.html";});
+	rect.on('dblclick',function(event){ window.location="level2.12.html";});
+	rect.blink = true;
+	rect.blink = blink;
+	stanki.push(rect);
+	rect.addTo(map);
 
 
 	function FlipLL(b) {

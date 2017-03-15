@@ -226,18 +226,18 @@ Partial Class l1
         End If
 
 		
-		If cm.IsBitSet(T202, 5) Then
+		If cm.IsBitSet(T202, 4) Then
 			dr("COLOR") = "RED"
             dr("INFO") = " Авария"
 			 dr("BLINK") = "YES"
         End If
 
 		
-		If cm.IsBitSet(T202, 9) Then
-			dr("COLOR") = "RED"
-            dr("INFO") = " Авария"
-			 dr("BLINK") = "YES"
-        End If
+		'If cm.IsBitSet(T202, 9) Then
+		'	dr("COLOR") = "RED"
+        '    dr("INFO") = " Авария"
+		'	 dr("BLINK") = "YES"
+        'End If
 
         dt2.Rows.Add(dr)
 		
@@ -260,7 +260,13 @@ Partial Class l1
         dr("COLOR") = "GREEN"
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
-
+		
+	    '''''''''''''''''''''''''''''''''' ШМ
+		  dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=400 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+        If dt.Rows.Count = 0 Then
+			 if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		end if
 
 		
         '''''''''''''''''''''''''''''''  "ЦВО_ШУ_12"
@@ -1140,6 +1146,12 @@ Partial Class l1
         dr("COLOR") = "GREEN"
         dr("BLINK") = "NO"
         dr("INFO") = " OK"
+		 dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=404 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
+		 If dt.Rows.Count = 0 Then
+		  if dr("COLOR") = "GREEN" then dr("COLOR") = "YELLOW"
+		  if dr("INFO") = " OK" then dr("INFO") = " Нет данных"
+		 end if
+		
 		
         dt = cm.QuerySelect(" SELECT * FROM datacurr WHERE id_ptype =1 and T1 is not null AND id_bd=405 AND dcounter >SYSDATE-1/24/12 order BY dcounter desc")
         If dt.Rows.Count > 0 Then
@@ -1382,7 +1394,19 @@ T0 =0
         End If
 
       
-
+	  
+	  
+	  
+		dt2.Rows.Add(dr)
+		
+		
+		dr = dt2.NewRow
+        dr("ID") = "12"
+        dr("COLOR") = "GREEN"
+        dr("BLINK") = "NO"
+        dr("INFO") = " OK"
+		
+		
        ''''''''''''''''' подсистема 6
 	   
 	    '''''''''''''''''''''''''''''''  "ЦМО_ШУ_23"
